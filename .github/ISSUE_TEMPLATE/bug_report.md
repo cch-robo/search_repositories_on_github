@@ -1,38 +1,25 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: 2.不具合修正
+about: アプリケーションの不具合（調査や設計も含む）
 title: ''
-labels: ''
+labels: bug
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## バグの説明
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+## 再現方法
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## 想定挙動
+本来の挙動との違いを説明してください。
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## スクリーンショット
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+## バグ発生環境
+- デバイス: [例: iPhone6]
+- OS: [例: iOS8.1]
+- ブラウザ [例: 標準ブラウザ、Safari]
+- バージョン [例: 22]
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+## 追加検討

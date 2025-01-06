@@ -1,10 +1,17 @@
 ---
-name: Custom issue template
-about: Describe this issue template's purpose here.
+name: 3.その他
+about: その他
 title: ''
-labels: ''
+labels: other
 assignees: ''
 
 ---
 
+## 概要
+
+## 対応案
+
+## 第二案
+
+## 追加検討
 
