@@ -31,6 +31,11 @@ ColorScheme _createColorScheme({required bool isDark}) {
 TextTheme _createTextTheme(BuildContext context, ColorScheme colorScheme) {
   final ThemeData baseThemeData = Theme.of(context);
   final TextTheme baseTextTheme = baseThemeData.textTheme;
+  /*
+  // FIXME 将来的に Google Fonts 対応する場合
+  TextTheme textTheme =
+      GoogleFonts.notoSansJpTextTheme(baseThemeData.textTheme);
+  */
   return TextTheme(
     displayLarge: _convertColor(baseTextTheme.displayLarge, colorScheme),
     displayMedium: _convertColor(baseTextTheme.displayMedium, colorScheme),
