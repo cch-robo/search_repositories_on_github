@@ -3,6 +3,7 @@
 
 // ignore_for_file: noop_primitive_operations
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
@@ -30,17 +31,20 @@ class AppErrorHandler {
       // アプリ全体のエラーハンドリングを行うため、
       // アプリ起動は、この関数パラメータ内で行う必要があることに留意。
       WidgetsFlutterBinding.ensureInitialized();
+
+      // Flutter フレームワーク由来エラーのハンドラ
       _oldFlutterExceptionHandler = FlutterError.onError!;
       FlutterError.onError = _flutterErrorHandler;
+
+      // Flutter プラットフォーム由来エラーのハンドラ
+      PlatformDispatcher.instance.onError = _platformErrorHandler;
 
       // アプリ起動
       runApp(app);
     }, (Object error, StackTrace stack) {
+      // 非同期処理由来エラーのハンドラ
       _asynchronousErrorHandler(error, stack);
     });
-
-    // Flutter プラットフォーム由来エラーのハンドラ
-    PlatformDispatcher.instance.onError = _platformErrorHandler;
   }
 
   /// 既存 Flutter system exception handler
@@ -49,51 +53,63 @@ class AppErrorHandler {
   /// オプション Flutter system exception handler
   late final FlutterExceptionHandler? _optionFlutterExceptionHandler;
 
+  /// オプション Flutter platform error handler
+  late final ErrorCallback? _optionPlatformErrorHandler;
+
   /// オプション Flutter Asynchronous error handler
   late final void Function(Object error, StackTrace stackTrace)?
       _optionAsynchronousErrorHandler;
 
   /// （アプリ全体）Flutter フレームワーク エラー・ハンドラ
   void _flutterErrorHandler(FlutterErrorDetails details) {
-    debugLog('Application ExceptionHandler');
+    debugLog('FlutterErrorHandle');
     debugLog('handling err type=${details.exception.runtimeType.toString()}');
     debugLog('exceptionAsString=${details.exceptionAsString()}');
     debugLog('StackTraces=\n${details.stack.toString()}');
     debugLog('FlutterError.dumpErrorToConsole');
     FlutterError.dumpErrorToConsole(details, forceReport: true);
 
-    // オプションのエクセプションハンドラ処置実行
+    // オプションのエクセプションハンドラ処置を実行
     if (_optionFlutterExceptionHandler != null) {
       _optionFlutterExceptionHandler(details);
     }
-    // 既存エクセプションハンドラ処置実行
+
+    // 既存エクセプションハンドラ処置を実行
     _oldFlutterExceptionHandler(details);
 
     // TODO トップレベルまで上がってきた未処置のエラーなので、Crashlytics でログ記録を取ること。
-    // TODO 想定外の例外の場合は、アプリを強制終了できるようにすること。
-    debugLog('exceptionHandler  - ${details.exception}', info: _instance);
+    // TODO 想定外のエラーなので、アプリをユーザーに強制終了してもらうようにすること。
+    debugLog('FlutterErrorHandler  - ${details.exception}', info: _instance);
   }
 
   // Flutter フレームワーク・レベルではない、プラットフォーム由来のエラー・ハンドラ
   bool _platformErrorHandler(Object error, StackTrace stackTrace) {
+    debugLog('PlatformDispatcherErrorHandle', cause: error);
+    debugLog('StackTraces=\n${stackTrace.toString()}');
+
+    // オプションのエラーハンドラ処置を実行
+    if (_optionPlatformErrorHandler != null) {
+      _optionPlatformErrorHandler(error, stackTrace);
+    }
+
     // TODO トップレベルまで上がってきた未処置のエラーなので、Crashlytics でログ記録を取ること。
-    // TODO 想定外の例外の場合は、アプリを強制終了できるようにすること。
+    // TODO 想定外のエラーなので、アプリをユーザーに強制終了してもらうようにすること。
     debugLog('PlatformDispatcher  - onError', info: _instance);
     return true;
   }
 
   /// （アプリ全体）非同期処理由来のエラー・ハンドラ （Error だけでなく Exceptionも捕捉します）
   void _asynchronousErrorHandler(Object error, StackTrace stack) {
-    debugLog('Application ErrorHandler', cause: error);
+    debugLog('AsynchronousErrorHandle', cause: error);
     debugLog('StackTraces=\n${stack.toString()}');
 
-    // オプションのエラーハンドラ処置実行
+    // オプションのエラーハンドラ処置を実行
     if (_optionAsynchronousErrorHandler != null) {
       _optionAsynchronousErrorHandler(error, stack);
     }
 
     // TODO トップレベルまで上がってきた未処置のエラーなので、Crashlytics でログ記録を取ること。
-    // TODO 想定外のエラーの場合は、アプリを強制終了できるようにすること。
-    debugLog('errorHandler  - $error', info: _instance);
+    // TODO 想定外のエラーなので、アプリをユーザーに強制終了してもらうようにすること。
+    debugLog('AsynchronousErrorHandler  - $error', info: _instance);
   }
 }
