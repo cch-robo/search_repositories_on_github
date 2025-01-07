@@ -1,5 +1,5 @@
 {
-  "appDescription": "Search Repo アプリは、GitHub API を使って任意クエリでリポジトリ検索するアプリです。",
+  "appDescription": "Search Repo は、GitHub API を使って任意クエリでリポジトリ検索するアプリです。",
   "@appName": {
     "description": "アプリの概要説明"
   },

@@ -101,7 +101,7 @@ abstract class AppLocalizations {
   /// No description provided for @appDescription.
   ///
   /// In ja, this message translates to:
-  /// **'Search Repo アプリは、GitHub API を使って任意クエリでリポジトリ検索するアプリです。'**
+  /// **'Search Repo は、GitHub API を使って任意クエリでリポジトリ検索するアプリです。'**
   String get appDescription;
 
   /// No description provided for @appTitle.
