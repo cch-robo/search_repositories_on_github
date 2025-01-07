@@ -16,7 +16,7 @@ linter:
     - always_declare_return_types
     - always_put_control_body_on_new_line
     - always_put_required_named_parameters_first
-    #- always_specify_types
+    - always_specify_types
     - always_use_package_imports
     - annotate_overrides
     - annotate_redeclares
@@ -41,7 +41,7 @@ linter:
     - avoid_positional_boolean_parameters
     - avoid_print
     - avoid_private_typedef_functions
-    - avoid_redundant_argument_values
+    ##- avoid_redundant_argument_values
     - avoid_relative_lib_imports
     - avoid_renaming_method_parameters
     - avoid_return_types_on_setters
@@ -191,7 +191,7 @@ linter:
     - unnecessary_constructor_name
     #- unnecessary_final
     - unnecessary_getters_setters
-    - unnecessary_lambdas
+    ##- unnecessary_lambdas
     - unnecessary_late
     - unnecessary_library_directive
     - unnecessary_library_name
