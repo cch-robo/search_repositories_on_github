@@ -103,6 +103,12 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'Search Repo アプリは、GitHub API を使って任意クエリでリポジトリ検索するアプリです。'**
   String get appDescription;
+
+  /// No description provided for @appTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'Search Repo'**
+  String get appTitle;
 }
 
 class _AppLocalizationsDelegate

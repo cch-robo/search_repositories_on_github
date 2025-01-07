@@ -9,4 +9,7 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get appDescription =>
       'Search Repo アプリは、GitHub API を使って任意クエリでリポジトリ検索するアプリです。';
+
+  @override
+  String get appTitle => 'Search Repo';
 }

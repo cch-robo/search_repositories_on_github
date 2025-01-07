@@ -9,4 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get appDescription =>
       'The Search Repo app uses the GitHub API to search repositories with arbitrary queries.';
+
+  @override
+  String get appTitle => 'Search Repo';
 }
