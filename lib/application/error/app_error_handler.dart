@@ -25,12 +25,22 @@ class AppErrorHandler {
   /// アプリ起動
   ///
   /// Flutter アプリのエラーハンドラを設定して、アプリを起動します。
-  void runAppWithErrorHandler(Widget app) {
+  void runAppWithErrorHandler({
+    required Widget appWidget,
+    required Future<void> Function() appInitialize,
+    FlutterExceptionHandler? onFlutterError,
+    ErrorCallback? onPlatformError,
+    void Function(Object error, StackTrace stackTrace)? onAsynchronousError,
+  }) {
     // ignore: discarded_futures
     runZonedGuarded(() async {
       // アプリ全体のエラーハンドリングを行うため、
       // アプリ起動は、この関数パラメータ内で行う必要があることに留意。
       WidgetsFlutterBinding.ensureInitialized();
+      // オプションのエラーハンドラを設定
+      _optionFlutterExceptionHandler = onFlutterError;
+      _optionPlatformErrorHandler = onPlatformError;
+      _optionAsynchronousErrorHandler = onAsynchronousError;
 
       // Flutter フレームワーク由来エラーのハンドラ
       _oldFlutterExceptionHandler = FlutterError.onError!;
@@ -39,8 +49,21 @@ class AppErrorHandler {
       // Flutter プラットフォーム由来エラーのハンドラ
       PlatformDispatcher.instance.onError = _platformErrorHandler;
 
-      // アプリ起動
-      runApp(app);
+      try {
+        // アプリ全体の初期化処理
+        await appInitialize();
+
+        // アプリ起動
+        runApp(appWidget);
+        // ignore: avoid_catches_without_on_clauses
+      } catch (e) {
+        debugLog('Error occurred in appInitialize', cause: e);
+
+        // TODO トップレベルまで上がってきた未処置のエラーなので、Crashlytics でログ記録を取ること。
+        // TODO 想定外のエラーなので、アプリをユーザーに強制終了してもらうようにすること。
+        // TODO ただし、アプリが起動していないため l10n リソースもロケールも使えません。
+        debugLog('Application could not lunch.');
+      }
     }, (Object error, StackTrace stack) {
       // 非同期処理由来エラーのハンドラ
       _asynchronousErrorHandler(error, stack);
