@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:search_repositories_on_github/application/l10n/gen/app_localizations.dart';
 import 'package:search_repositories_on_github/application/theme/theme.dart';
 import 'package:search_repositories_on_github/presentation/home_page/page_widget/home_page_widget.dart';
 
@@ -11,6 +12,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: createThemeData(context),
       darkTheme: createDarkThemeData(context),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
