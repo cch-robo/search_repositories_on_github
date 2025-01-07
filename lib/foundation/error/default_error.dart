@@ -1,6 +1,7 @@
 // このソースファイルは、FlutterKaigi mini#2 @Ishikawa プロジェクト・ライブラリの流用です。
 // https://github.com/cch-robo/Flutter_plain_infra_mini_hands-on/blob/main/lib/src/infra/default_error.dart
 
+// ignore_for_file: noop_primitive_operations
 import 'package:flutter/foundation.dart';
 
 /// （汎用）エラー基底クラス

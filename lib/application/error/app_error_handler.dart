@@ -1,6 +1,7 @@
 // このソースファイルは、FlutterKaigi mini#2 @Ishikawa プロジェクト・ライブラリの流用です。
 // https://github.com/cch-robo/Flutter_plain_infra_mini_hands-on/blob/main/lib/src/infra/app_error_handler.dart
 
+// ignore_for_file: noop_primitive_operations
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -9,9 +10,6 @@ import 'package:search_repositories_on_github/foundation/debug/debug_logger.dart
 
 /// アプリ・エラーハンドラ設定クラス
 class AppErrorHandler {
-  /// シングルトン・インスタンス
-  static late final AppErrorHandler _instance;
-
   /// コンストラクタ
   ///
   /// _シングルトン・インスタンスのため、_<br/>
@@ -20,10 +18,14 @@ class AppErrorHandler {
     _instance = this;
   }
 
+  /// シングルトン・インスタンス
+  static late final AppErrorHandler _instance;
+
   /// アプリ起動
   ///
   /// Flutter アプリのエラーハンドラを設定して、アプリを起動します。
   void runAppWithErrorHandler(Widget app) {
+    // ignore: discarded_futures
     runZonedGuarded(() async {
       // アプリ全体のエラーハンドリングを行うため、
       // アプリ起動は、この関数パラメータ内で行う必要があることに留意。
@@ -38,7 +40,8 @@ class AppErrorHandler {
     });
 
     // Flutter フレームワーク・レベルではない、プラットフォーム由来の非同期エラーのハンドラ
-    PlatformDispatcher.instance.onError = (error, stack) {
+    PlatformDispatcher.instance.onError =
+        (Object error, StackTrace stackTrace) {
       // TODO トップレベルまで上がってきた未処置のエラーなので、Crashlytics でログ記録を取ること。
       // TODO 想定外の例外の場合は、アプリを強制終了できるようにすること。
       debugLog('PlatformDispatcher  - onError', info: _instance);
@@ -53,7 +56,8 @@ class AppErrorHandler {
   late final FlutterExceptionHandler? _optionExceptionHandler;
 
   /// オプション Flutter system error handler
-  late final Function(Object error, StackTrace stackTrace)? _optionErrorHandler;
+  late final void Function(Object error, StackTrace stackTrace)?
+      _optionErrorHandler;
 
   /// アプリ全体での Exception Handler (内部使用のみ)
   void exceptionHandler(FlutterErrorDetails details) {
@@ -65,8 +69,9 @@ class AppErrorHandler {
     FlutterError.dumpErrorToConsole(details, forceReport: true);
 
     // オプションのエクセプションハンドラ処置実行
-    if (_optionExceptionHandler != null) _optionExceptionHandler(details);
-
+    if (_optionExceptionHandler != null) {
+      _optionExceptionHandler(details);
+    }
     // 既存エクセプションハンドラ処置実行
     _oldExceptionHandler(details);
 
@@ -81,7 +86,9 @@ class AppErrorHandler {
     debugLog('StackTraces=\n${stack.toString()}');
 
     // オプションのエラーハンドラ処置実行
-    if (_optionErrorHandler != null) _optionErrorHandler(error, stack);
+    if (_optionErrorHandler != null) {
+      _optionErrorHandler(error, stack);
+    }
 
     // TODO トップレベルまで上がってきた未処置のエラーなので、Crashlytics でログ記録を取ること。
     // TODO 想定外のエラーの場合は、アプリを強制終了できるようにすること。

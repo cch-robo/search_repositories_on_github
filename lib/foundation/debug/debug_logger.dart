@@ -1,9 +1,11 @@
 // このソースファイルは、FlutterKaigi mini#2 @Ishikawa プロジェクト・ライブラリの流用です。
 // https://github.com/cch-robo/Flutter_plain_infra_mini_hands-on/blob/main/lib/src/infra/debug_logger.dart
 
+// ignore_for_file: noop_primitive_operations
 import 'package:flutter/foundation.dart';
 import 'package:search_repositories_on_github/foundation/error/default_error.dart';
 
+// ignore: avoid_classes_with_only_static_members
 class DebugLog {
   static bool isDebugMode = true;
 }
@@ -26,7 +28,7 @@ void debugLog(String message, {Object? info, Object? cause}) {
 
 String createDebugOutText(String message, {Object? info, Object? cause}) {
   if ((DebugLog.isDebugMode || cause != null) && kDebugMode) {
-    StringBuffer sb = StringBuffer();
+    final StringBuffer sb = StringBuffer();
     // メッセージ表示
     if (info != null) {
       sb.write('${info.runtimeType.toString()}: $message');
@@ -49,7 +51,9 @@ String createDebugOutText(String message, {Object? info, Object? cause}) {
         isLoop = true;
       } else {
         sb.write('\n${cause.runtimeType.toString()}: ${cause.toString()}');
-        if (cause is Error) sb.write('\n${cause.stackTrace?.toString() ?? ""}');
+        if (cause is Error) {
+          sb.write('\n${cause.stackTrace?.toString() ?? ""}');
+        }
       }
     }
 
