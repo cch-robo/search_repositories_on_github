@@ -15,7 +15,7 @@ class DetailPage extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
-          children: [
+          children: <Widget>[
             Text(
               '${ref.read(counterViewModelProvider).count}',
             ),
