@@ -9,6 +9,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:search_repositories_on_github/application/app_widget/app_widget.dart';
 import 'package:search_repositories_on_github/application/error/app_error_dialog.dart';
+import 'package:search_repositories_on_github/application/l10n/gen/app_localizations_ja.dart';
+import 'package:search_repositories_on_github/application/l10n/l10n_service.dart';
 import 'package:search_repositories_on_github/foundation/debug/debug_logger.dart';
 
 /// アプリレベルのエラーハンドラ設定クラス
@@ -70,15 +72,16 @@ class AppErrorHandler {
       } catch (e) {
         debugLog('Error occurred in appInitialize', cause: e);
 
-        // TODO トップレベルまで上がってきた未処置のエラーなので、Crashlytics でログ記録を取ること。
-        // TODO 想定外のエラーなので、アプリをユーザーに強制終了してもらうようにすること。
-        // TODO ただし、アプリが起動していないため l10n リソースもロケールも使えません。
+        // トップレベルまで上がってきた未処置の想定外のエラーなので、
+        // アプリをユーザーに強制終了してもらうようにします。
+        // ただし、アプリが起動していないため l10n リソースもロケールも使えません。
         // このためメッセージリソースをデフォルトの日本語で直接指定します。
+        final AppLocalizationsJa l10n = AppLocalizationsJa();
 
         // エラー表示専用アプリ起動
         _errorDialog.showAppBeforeLaunchErrorAlertDialog(
-          title: 'Error',
-          message: '想定外のエラーが発生しました。\n\n問題に対応できないため、アプリを終了してください。',
+          title: l10n.errorDialogTitle,
+          message: l10n.errorDialogUnexpectedErrorMessage,
         );
         debugLog('Application could not lunch.');
       }
@@ -122,14 +125,13 @@ class AppErrorHandler {
     // 既存エクセプションハンドラ処置を実行
     _oldFlutterExceptionHandler(details);
 
-    // TODO トップレベルまで上がってきた未処置のエラーなので、Crashlytics でログ記録を取ること。
-    // TODO 想定外のエラーなので、アプリをユーザーに強制終了してもらうようにすること。
-    debugLog('FlutterErrorHandler  - ${details.exception}', info: _instance);
+    // トップレベルまで上がってきた未処置の想定外のエラーなので、
+    // アプリをユーザーに強制終了してもらうようにします。
     unawaited(
       _errorDialog.showErrorAlertDialog(
         context: globalNavigatorContext,
-        title: 'Error',
-        message: '想定外のエラーが発生しました。\n\n問題に対応できないため、アプリを終了してください。',
+        title: l10n(globalNavigatorContext).errorDialogTitle,
+        message: l10n(globalNavigatorContext).errorDialogUnexpectedErrorMessage,
         isExitApp: true,
       ),
     );
@@ -146,14 +148,13 @@ class AppErrorHandler {
       _optionPlatformErrorHandler(error, stackTrace);
     }
 
-    // TODO トップレベルまで上がってきた未処置のエラーなので、Crashlytics でログ記録を取ること。
-    // TODO 想定外のエラーなので、アプリをユーザーに強制終了してもらうようにすること。
-    debugLog('PlatformDispatcher  - onError', info: _instance);
+    // トップレベルまで上がってきた未処置の想定外のエラーなので、
+    // アプリをユーザーに強制終了してもらうようにします。
     unawaited(
       _errorDialog.showErrorAlertDialog(
         context: globalNavigatorContext,
-        title: 'Error',
-        message: '想定外のエラーが発生しました。\n\n問題に対応できないため、アプリを終了してください。',
+        title: l10n(globalNavigatorContext).errorDialogTitle,
+        message: l10n(globalNavigatorContext).errorDialogUnexpectedErrorMessage,
         isExitApp: true,
       ),
     );
@@ -171,14 +172,13 @@ class AppErrorHandler {
       _optionAsynchronousErrorHandler(error, stack);
     }
 
-    // TODO トップレベルまで上がってきた未処置のエラーなので、Crashlytics でログ記録を取ること。
-    // TODO 想定外のエラーなので、アプリをユーザーに強制終了してもらうようにすること。
-    debugLog('AsynchronousErrorHandler  - $error', info: _instance);
+    // トップレベルまで上がってきた未処置の想定外のエラーなので、
+    // アプリをユーザーに強制終了してもらうようにします。
     unawaited(
       _errorDialog.showErrorAlertDialog(
         context: globalNavigatorContext,
-        title: 'Error',
-        message: '想定外のエラーが発生しました。\n\n問題に対応できないため、アプリを終了してください。',
+        title: l10n(globalNavigatorContext).errorDialogTitle,
+        message: l10n(globalNavigatorContext).errorDialogUnexpectedErrorMessage,
         isExitApp: true,
       ),
     );
