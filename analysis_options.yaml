@@ -8,6 +8,9 @@ analyzer:
 #  errors:
   exclude:
     - lib/**.g.dart
+  plugins:
+    # enable riverpod_lint
+    - custom_lint
 
 formatter:
   page_width: 80
