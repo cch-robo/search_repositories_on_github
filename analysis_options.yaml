@@ -9,7 +9,8 @@ analyzer:
     # Workaround for freezing and json_serializable issues
     invalid_annotation_target: ignore
   exclude:
-    - lib/**.g.dart
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
   plugins:
     # enable riverpod_lint
     - custom_lint
