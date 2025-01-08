@@ -1,8 +1,8 @@
 import 'package:riverpod/riverpod.dart';
 import 'package:search_repositories_on_github/foundation/debug/debug_logger.dart';
-import 'package:search_repositories_on_github/presentation/search_page/page_widget/search_page_widget.dart';
 import 'package:test/test.dart';
 
+import 'riverpod_depend_app.dart';
 import 'riverpod_unit_test_utillity.dart';
 
 void main() {
