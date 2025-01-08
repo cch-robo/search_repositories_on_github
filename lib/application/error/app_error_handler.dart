@@ -7,9 +7,11 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:search_repositories_on_github/application/app_widget/app_widget.dart';
+import 'package:search_repositories_on_github/application/error/app_error_dialog.dart';
 import 'package:search_repositories_on_github/foundation/debug/debug_logger.dart';
 
-/// アプリ・エラーハンドラ設定クラス
+/// アプリレベルのエラーハンドラ設定クラス
 class AppErrorHandler {
   /// コンストラクタ
   ///
@@ -33,6 +35,7 @@ class AppErrorHandler {
   void runAppWithErrorHandler({
     required Widget appWidget,
     required Future<void> Function() appInitialize,
+    required AppErrorHandlerDialog appErrorDialog,
     FlutterExceptionHandler? onFlutterError,
     ErrorCallback? onPlatformError,
     void Function(Object error, StackTrace stackTrace)? onAsynchronousError,
@@ -42,6 +45,9 @@ class AppErrorHandler {
       // アプリ全体のエラーハンドリングを行うため、
       // アプリ起動は、この関数パラメータ内で行う必要があることに留意。
       WidgetsFlutterBinding.ensureInitialized();
+      // アプリレベルのエラーダイアログサービスを設定
+      _errorDialog = appErrorDialog;
+
       // オプションのエラーハンドラを設定
       _optionFlutterExceptionHandler = onFlutterError;
       _optionPlatformErrorHandler = onPlatformError;
@@ -67,6 +73,13 @@ class AppErrorHandler {
         // TODO トップレベルまで上がってきた未処置のエラーなので、Crashlytics でログ記録を取ること。
         // TODO 想定外のエラーなので、アプリをユーザーに強制終了してもらうようにすること。
         // TODO ただし、アプリが起動していないため l10n リソースもロケールも使えません。
+        // このためメッセージリソースをデフォルトの日本語で直接指定します。
+
+        // エラー表示専用アプリ起動
+        _errorDialog.showAppBeforeLaunchErrorAlertDialog(
+          title: 'Error',
+          message: '想定外のエラーが発生しました。\n\n問題に対応できないため、アプリを終了してください。',
+        );
         debugLog('Application could not lunch.');
       }
     }, (Object error, StackTrace stack) {
@@ -74,6 +87,9 @@ class AppErrorHandler {
       _asynchronousErrorHandler(error, stack);
     });
   }
+
+  /// アプリレベルのエラーダイアログ表示サービス
+  late final AppErrorHandlerDialog _errorDialog;
 
   /// 既存 Flutter system exception handler
   late final FlutterExceptionHandler _oldFlutterExceptionHandler;
@@ -109,6 +125,14 @@ class AppErrorHandler {
     // TODO トップレベルまで上がってきた未処置のエラーなので、Crashlytics でログ記録を取ること。
     // TODO 想定外のエラーなので、アプリをユーザーに強制終了してもらうようにすること。
     debugLog('FlutterErrorHandler  - ${details.exception}', info: _instance);
+    unawaited(
+      _errorDialog.showErrorAlertDialog(
+        context: globalNavigatorContext,
+        title: 'Error',
+        message: '想定外のエラーが発生しました。\n\n問題に対応できないため、アプリを終了してください。',
+        isExitApp: true,
+      ),
+    );
   }
 
   // Flutter フレームワーク・レベルではない、プラットフォーム由来のエラー・ハンドラ
@@ -125,6 +149,14 @@ class AppErrorHandler {
     // TODO トップレベルまで上がってきた未処置のエラーなので、Crashlytics でログ記録を取ること。
     // TODO 想定外のエラーなので、アプリをユーザーに強制終了してもらうようにすること。
     debugLog('PlatformDispatcher  - onError', info: _instance);
+    unawaited(
+      _errorDialog.showErrorAlertDialog(
+        context: globalNavigatorContext,
+        title: 'Error',
+        message: '想定外のエラーが発生しました。\n\n問題に対応できないため、アプリを終了してください。',
+        isExitApp: true,
+      ),
+    );
     return true;
   }
 
@@ -142,5 +174,13 @@ class AppErrorHandler {
     // TODO トップレベルまで上がってきた未処置のエラーなので、Crashlytics でログ記録を取ること。
     // TODO 想定外のエラーなので、アプリをユーザーに強制終了してもらうようにすること。
     debugLog('AsynchronousErrorHandler  - $error', info: _instance);
+    unawaited(
+      _errorDialog.showErrorAlertDialog(
+        context: globalNavigatorContext,
+        title: 'Error',
+        message: '想定外のエラーが発生しました。\n\n問題に対応できないため、アプリを終了してください。',
+        isExitApp: true,
+      ),
+    );
   }
 }
