@@ -1,20 +1,11 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:search_repositories_on_github/presentation/results_page/page_widget/result_page_widget.dart';
+import 'package:search_repositories_on_github/application/router/routes.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({required this.title, super.key});
-
-  final String title;
+  const SearchPage({super.key});
 
   @override
   State<SearchPage> createState() => _SearchPageState();
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(StringProperty('title', title));
-  }
 }
 
 class _SearchPageState extends State<SearchPage> {
@@ -31,7 +22,7 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: const Text('Search Page'),
       ),
       body: Center(
         child: Column(
@@ -45,14 +36,7 @@ class _SearchPageState extends State<SearchPage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             ElevatedButton(
-              onPressed: () async {
-                await Navigator.of(context).push(
-                  // ignore: argument_type_not_assignable
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => const ResultsPage(),
-                  ),
-                );
-              },
+              onPressed: () => ResultsPageRoute().go(context),
               child: const Text('Go to the Results page'),
             ),
           ],

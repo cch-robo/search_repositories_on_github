@@ -11,7 +11,7 @@ void main() {
   // アプリ起動（アプリ全体のエラーハンドリング指定含む）
   appErrorHandler.runAppWithErrorHandler(
     appErrorDialog: appErrorDialog,
-    appWidget: const MyApp(),
+    appWidget: const App(),
     appInitialize: () async {
       // Firebase ライブラリの設定初期化などに利用します。
     },
