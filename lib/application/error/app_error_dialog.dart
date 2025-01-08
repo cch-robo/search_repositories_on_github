@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:search_repositories_on_github/application/app_widget/app_widget.dart';
 
 /// アプリレベルのエラーダイアログ表示サービス
 class AppErrorHandlerDialog {
@@ -43,33 +42,47 @@ class AppErrorHandlerDialog {
       );
     }
   }
+
+  void showAppBeforeLaunchErrorAlertDialog({
+    required String title,
+    required String message,
+  }) {
+    // エラー表示専用アプリ起動
+    runApp(
+      _ShowErrorDialogApp(
+        title: title,
+        message: message,
+        errorDialog: this,
+      ),
+    );
+  }
 }
 
 /// アプリレベルのエラーダイアログ表示サービス・ウィジェット
 ///
 /// アプリ未起動時用のエラー表示だけの AppWidget です。
-class ShowErrorDialogApp extends StatelessWidget {
-  const ShowErrorDialogApp({
+class _ShowErrorDialogApp extends StatelessWidget {
+  _ShowErrorDialogApp({
     required this.title,
     required this.message,
-    super.key,
+    required this.errorDialog,
   });
 
   final String title;
   final String message;
+  final AppErrorHandlerDialog errorDialog;
+  final GlobalKey<NavigatorState> globalNavigatorKey =
+      GlobalKey<NavigatorState>(debugLabel: 'app');
 
   Future<void> _showError() async {
-    final AppErrorHandlerDialog errorDialog = AppErrorHandlerDialog();
-    if (isGlobalNavigatorRunning) {
-      final BuildContext context = globalNavigatorContext;
-      if (context.mounted) {
-        await errorDialog.showErrorAlertDialog(
-          context: context,
-          title: title,
-          message: message,
-          isExitApp: true,
-        );
-      }
+    final BuildContext context = globalNavigatorKey.currentState!.context;
+    if (context.mounted) {
+      await errorDialog.showErrorAlertDialog(
+        context: context,
+        title: title,
+        message: message,
+        isExitApp: true,
+      );
     }
   }
 
@@ -87,5 +100,14 @@ class ShowErrorDialogApp extends StatelessWidget {
     super.debugFillProperties(properties);
     properties.add(StringProperty('message', message));
     properties.add(StringProperty('title', title));
+    properties.add(
+      DiagnosticsProperty<AppErrorHandlerDialog>('errorDialog', errorDialog),
+    );
+    properties.add(
+      DiagnosticsProperty<GlobalKey<NavigatorState>>(
+        'globalNavigatorKey',
+        globalNavigatorKey,
+      ),
+    );
   }
 }
