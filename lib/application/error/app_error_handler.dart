@@ -13,7 +13,7 @@ import 'package:search_repositories_on_github/foundation/debug/debug_logger.dart
 class AppErrorHandler {
   /// コンストラクタ
   ///
-  /// _シングルトン・インスタンスのため、_<br/>
+  /// _シングルトン・インスタンスにするため、_<br/>
   /// _2回目の生成はエラーとなることに注意ください。_
   AppErrorHandler() {
     _instance = this;
@@ -21,6 +21,11 @@ class AppErrorHandler {
 
   /// シングルトン・インスタンス
   static late final AppErrorHandler _instance;
+
+  bool _hasError = false;
+
+  /// アプリケーションレベル・エラー発生有無フラグ
+  bool get hasError => _hasError;
 
   /// アプリ起動
   ///
@@ -91,6 +96,7 @@ class AppErrorHandler {
     debugLog('StackTraces=\n${details.stack.toString()}');
     debugLog('FlutterError.dumpErrorToConsole');
     FlutterError.dumpErrorToConsole(details, forceReport: true);
+    _hasError = true;
 
     // オプションのエクセプションハンドラ処置を実行
     if (_optionFlutterExceptionHandler != null) {
@@ -109,6 +115,7 @@ class AppErrorHandler {
   bool _platformErrorHandler(Object error, StackTrace stackTrace) {
     debugLog('PlatformDispatcherErrorHandle', cause: error);
     debugLog('StackTraces=\n${stackTrace.toString()}');
+    _hasError = true;
 
     // オプションのエラーハンドラ処置を実行
     if (_optionPlatformErrorHandler != null) {
@@ -125,6 +132,7 @@ class AppErrorHandler {
   void _asynchronousErrorHandler(Object error, StackTrace stack) {
     debugLog('AsynchronousErrorHandle', cause: error);
     debugLog('StackTraces=\n${stack.toString()}');
+    _hasError = true;
 
     // オプションのエラーハンドラ処置を実行
     if (_optionAsynchronousErrorHandler != null) {
