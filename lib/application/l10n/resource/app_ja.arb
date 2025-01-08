@@ -3,5 +3,10 @@
   "@appName": {
     "description": "アプリの概要説明"
   },
-  "appTitle": "Search Repo"
+  "appTitle": "Search Repo",
+
+  "errorDialogTitle": "Error",
+  "errorDialogUnexpectedErrorMessage": "想定外のエラーが発生しました。\n\n問題に対応できないため、アプリを終了してください。",
+  "errorButtonOk": "OK",
+  "errorButtonCancel": "Cancel"
 }
