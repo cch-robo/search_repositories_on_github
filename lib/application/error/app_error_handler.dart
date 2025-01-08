@@ -18,18 +18,26 @@ class AppErrorHandler {
   /// コンストラクタ
   ///
   /// _シングルトン・インスタンスにするため、_<br/>
-  /// _2回目の生成はエラーとなることに注意ください。_
+  /// _2回目の生成はエラーとすることに注意ください。_
   AppErrorHandler() {
     _instance = this;
   }
 
   /// シングルトン・インスタンス
+  // ignore: unused_field
   static late final AppErrorHandler _instance;
 
-  bool _hasError = false;
+  AppErrorType _errorType = AppErrorType.noError;
+  Object? _error;
 
   /// アプリケーションレベル・エラー発生有無フラグ
-  bool get hasError => _hasError;
+  bool get hasError => _error != null;
+
+  /// アプリケーションレベル・エラー種別
+  AppErrorType get errorType => _errorType;
+
+  /// アプリケーションレベル・エラー
+  Object? get error => _error;
 
   /// アプリ起動
   ///
@@ -71,6 +79,8 @@ class AppErrorHandler {
         // ignore: avoid_catches_without_on_clauses
       } catch (e) {
         debugLog('Error occurred in appInitialize', cause: e);
+        _error = e;
+        _errorType = AppErrorType.appInitializeError;
 
         // トップレベルまで上がってきた未処置の想定外のエラーなので、
         // アプリをユーザーに強制終了してもらうようにします。
@@ -115,7 +125,8 @@ class AppErrorHandler {
     debugLog('StackTraces=\n${details.stack.toString()}');
     debugLog('FlutterError.dumpErrorToConsole');
     FlutterError.dumpErrorToConsole(details, forceReport: true);
-    _hasError = true;
+    _error = error;
+    _errorType = AppErrorType.flutterError;
 
     // オプションのエクセプションハンドラ処置を実行
     if (_optionFlutterExceptionHandler != null) {
@@ -141,7 +152,8 @@ class AppErrorHandler {
   bool _platformErrorHandler(Object error, StackTrace stackTrace) {
     debugLog('PlatformDispatcherErrorHandle', cause: error);
     debugLog('StackTraces=\n${stackTrace.toString()}');
-    _hasError = true;
+    _error = error;
+    _errorType = AppErrorType.platformError;
 
     // オプションのエラーハンドラ処置を実行
     if (_optionPlatformErrorHandler != null) {
@@ -165,7 +177,8 @@ class AppErrorHandler {
   void _asynchronousErrorHandler(Object error, StackTrace stack) {
     debugLog('AsynchronousErrorHandle', cause: error);
     debugLog('StackTraces=\n${stack.toString()}');
-    _hasError = true;
+    _error = error;
+    _errorType = AppErrorType.asynchronousError;
 
     // オプションのエラーハンドラ処置を実行
     if (_optionAsynchronousErrorHandler != null) {
@@ -183,4 +196,13 @@ class AppErrorHandler {
       ),
     );
   }
+}
+
+/// アプリケーションレベル・エラー種別
+enum AppErrorType {
+  appInitializeError,
+  flutterError,
+  platformError,
+  asynchronousError,
+  noError;
 }
