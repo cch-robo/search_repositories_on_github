@@ -6,7 +6,8 @@ analyzer:
     strict-inference: true
     strict-raw-types: true
 #  errors:
-#  exclude:
+  exclude:
+    - lib/**.g.dart
 
 formatter:
   page_width: 80
