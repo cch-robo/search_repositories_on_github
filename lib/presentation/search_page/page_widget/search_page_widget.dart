@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:search_repositories_on_github/application/router/routes.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -36,7 +36,7 @@ class _SearchPageState extends State<SearchPage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             ElevatedButton(
-              onPressed: () => context.go('/results'),
+              onPressed: () => ResultsPageRoute().go(context),
               child: const Text('Go to the Results page'),
             ),
           ],

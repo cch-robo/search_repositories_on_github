@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:search_repositories_on_github/application/router/routes.dart';
 
 class ResultsPage extends StatelessWidget {
   const ResultsPage({super.key});
@@ -15,7 +16,7 @@ class ResultsPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             ElevatedButton(
-              onPressed: () => context.go('/results/detail'),
+              onPressed: () => DetailPageRoute().go(context),
               child: const Text('Go to the Detail page'),
             ),
             ElevatedButton(
