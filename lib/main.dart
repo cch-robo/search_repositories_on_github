@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:search_repositories_on_github/application/app_widget/app_widget.dart';
 import 'package:search_repositories_on_github/application/error/app_error_dialog.dart';
 import 'package:search_repositories_on_github/application/error/app_error_handler.dart';
@@ -11,7 +12,9 @@ void main() {
   // アプリ起動（アプリ全体のエラーハンドリング指定含む）
   appErrorHandler.runAppWithErrorHandler(
     appErrorDialog: appErrorDialog,
-    appWidget: const App(),
+    appWidget: const ProviderScope(
+      child: App(),
+    ),
     appInitialize: () async {
       // Firebase ライブラリの設定初期化などに利用します。
     },
