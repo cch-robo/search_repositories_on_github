@@ -15,8 +15,8 @@ bool get isGlobalNavigatorRunning => globalNavigatorKey.currentState != null;
 BuildContext get globalNavigatorContext =>
     globalNavigatorKey.currentState!.context;
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
