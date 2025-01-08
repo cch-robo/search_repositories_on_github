@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:search_repositories_on_github/presentation/detail_page/page_widget/detail_page_widget.dart';
+import 'package:go_router/go_router.dart';
 
 class ResultsPage extends StatelessWidget {
   const ResultsPage({super.key});
@@ -15,18 +15,11 @@ class ResultsPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             ElevatedButton(
-              onPressed: () async {
-                await Navigator.of(context).push(
-                  // ignore: argument_type_not_assignable
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => const DetailPage(),
-                  ),
-                );
-              },
+              onPressed: () => context.go('/results/detail'),
               child: const Text('Go to the Detail page'),
             ),
             ElevatedButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => context.pop(),
               child: const Text('Go back to the Search page'),
             ),
           ],
