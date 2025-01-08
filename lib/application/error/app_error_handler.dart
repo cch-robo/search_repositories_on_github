@@ -7,10 +7,10 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:search_repositories_on_github/application/app_widget/app_widget.dart';
 import 'package:search_repositories_on_github/application/error/app_error_dialog.dart';
 import 'package:search_repositories_on_github/application/l10n/gen/app_localizations_ja.dart';
 import 'package:search_repositories_on_github/application/l10n/l10n_service.dart';
+import 'package:search_repositories_on_github/application/router/router.dart';
 import 'package:search_repositories_on_github/foundation/debug/debug_logger.dart';
 
 /// アプリレベルのエラーハンドラ設定クラス
