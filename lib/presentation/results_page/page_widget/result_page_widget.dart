@@ -11,6 +11,8 @@ class ResultsPage extends StatelessWidget {
       appBar: AppBar(title: const Text('Results Page')),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             ElevatedButton(
               onPressed: () async {
