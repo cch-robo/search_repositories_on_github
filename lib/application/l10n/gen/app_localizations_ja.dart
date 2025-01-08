@@ -12,4 +12,17 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get appTitle => 'Search Repo';
+
+  @override
+  String get errorDialogTitle => 'Error';
+
+  @override
+  String get errorDialogUnexpectedErrorMessage =>
+      '想定外のエラーが発生しました。\n\n問題に対応できないため、アプリを終了してください。';
+
+  @override
+  String get errorButtonOk => 'OK';
+
+  @override
+  String get errorButtonCancel => 'Cancel';
 }

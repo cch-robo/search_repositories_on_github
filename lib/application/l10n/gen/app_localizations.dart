@@ -109,6 +109,30 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'Search Repo'**
   String get appTitle;
+
+  /// No description provided for @errorDialogTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'Error'**
+  String get errorDialogTitle;
+
+  /// No description provided for @errorDialogUnexpectedErrorMessage.
+  ///
+  /// In ja, this message translates to:
+  /// **'想定外のエラーが発生しました。\n\n問題に対応できないため、アプリを終了してください。'**
+  String get errorDialogUnexpectedErrorMessage;
+
+  /// No description provided for @errorButtonOk.
+  ///
+  /// In ja, this message translates to:
+  /// **'OK'**
+  String get errorButtonOk;
+
+  /// No description provided for @errorButtonCancel.
+  ///
+  /// In ja, this message translates to:
+  /// **'Cancel'**
+  String get errorButtonCancel;
 }
 
 class _AppLocalizationsDelegate
