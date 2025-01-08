@@ -12,7 +12,7 @@ import 'package:search_repositories_on_github/application/app_widget/app_widget.
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const App());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
