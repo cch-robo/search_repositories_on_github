@@ -9,6 +9,7 @@ analyzer:
     # Workaround for freezing and json_serializable issues
     invalid_annotation_target: ignore
   exclude:
+    # see https://github.com/rrousselGit/freezed/issues/488
     - "**/*.g.dart"
     - "**/*.freezed.dart"
   plugins:
