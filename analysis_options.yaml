@@ -25,7 +25,7 @@ linter:
     - always_put_control_body_on_new_line
     - always_put_required_named_parameters_first
     - always_specify_types
-    - always_use_package_imports
+    ##- always_use_package_imports
     - annotate_overrides
     - annotate_redeclares
     #- avoid_annotating_with_dynamic
