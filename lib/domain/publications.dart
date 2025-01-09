@@ -10,7 +10,13 @@
 // 補足：domain レイヤは、
 // ユースケース都合に左右されない、アプリ内の共通基盤となるデータや機能の管理を担うレイヤです。
 //
+import 'package:search_repositories_on_github/domain/repository/searched_repo_repository.dart';
+
 export 'package:search_repositories_on_github/domain/models/search_filers.dart';
 export 'package:search_repositories_on_github/domain/models/search_repositories_info_model.dart';
 export 'package:search_repositories_on_github/domain/models/searched_repository_model.dart';
 export 'package:search_repositories_on_github/domain/repository/searched_repo_repository.dart';
+
+//FIXME AppWidgetを Hooks 対応して、アプリ初期化処理からインスタンス設定させること。
+/// クエリ検索結果データを提供するリポジトリのインスタンス
+late final SearchedRepoRepository searchedRepoRepositoryInstance;
