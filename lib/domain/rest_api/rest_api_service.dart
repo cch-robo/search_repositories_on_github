@@ -6,14 +6,23 @@ import 'package:search_repositories_on_github/foundation/error/default_error.dar
 class RestApiService {
   RestApiService();
 
-  final Dio _dio = Dio();
+  final Dio _dio = Dio(
+    BaseOptions(
+      // 接続タイムアウト
+      connectTimeout: const Duration(seconds: 5),
+      // データ送信タイムアウト
+      sendTimeout: const Duration(seconds: 5),
+      // データ受信タイムアウト
+      receiveTimeout: const Duration(seconds: 60),
+    ),
+  );
 
   Future<Response<Map<String, dynamic>>> get({
     required String path,
     Map<String, String> header = const <String, String>{},
     Map<String, dynamic>? queries,
   }) async {
-    _debugRequest('get', queries);
+    _debugRequest('[GET]', queries);
     try {
       header.keys.map((String key) {
         _dio.options.headers[key] = header[key];
@@ -21,28 +30,35 @@ class RestApiService {
       final Response<Map<String, dynamic>> response =
           await _dio.get<Map<String, dynamic>>(
         path,
-        queryParameters: queries ?? {},
+        queryParameters: queries ?? <String, dynamic>{},
       );
-      _debugResponse('get', response);
+      _debugResponse('[GET]', response);
 
       return response;
     } on DioException catch (exception) {
-      _debugDioException('get', exception);
-      throw DefaultException('', cause: exception);
+      // タイムアウト
+      if (exception.type == DioExceptionType.connectionTimeout ||
+          exception.type == DioExceptionType.sendTimeout ||
+          exception.type == DioExceptionType.receiveTimeout) {
+        debugLog('[GET] request timed out', cause: exception);
+      } else {
+        _debugDioException('[GET]', exception);
+      }
+      throw DefaultException('[GET] DioException', cause: exception);
     } catch (e) {
       _debugUnExpected('get', e);
-      throw DefaultError('get unexpected', cause: e);
+      throw DefaultError('[GET] unexpected', cause: e);
     }
   }
 
   Future<Response<Map<String, dynamic>>> post({
     required String path,
-    Map<String, String> header = const <String, String>{},
     required Map<String, dynamic> data,
+    Map<String, String> header = const <String, String>{},
     Map<String, dynamic>? queries,
   }) async {
-    _debugRequest('post', data);
-    _debugRequest('post', queries);
+    _debugRequest('[POST]', data);
+    _debugRequest('[POST]', queries);
     try {
       header.keys.map((String key) {
         _dio.options.headers[key] = header[key];
@@ -51,17 +67,24 @@ class RestApiService {
           await _dio.post<Map<String, dynamic>>(
         path,
         data: data,
-        queryParameters: queries ?? {},
+        queryParameters: queries ?? <String, dynamic>{},
       );
-      _debugResponse('post', response);
+      _debugResponse('[POST]', response);
 
       return response;
     } on DioException catch (exception) {
-      _debugDioException('post', exception);
-      throw DefaultException('', cause: exception);
+      // タイムアウト
+      if (exception.type == DioExceptionType.connectionTimeout ||
+          exception.type == DioExceptionType.sendTimeout ||
+          exception.type == DioExceptionType.receiveTimeout) {
+        debugLog('[POST] request timed out', cause: exception);
+      } else {
+        _debugDioException('[POST]', exception);
+      }
+      throw DefaultException('[POST] DioException', cause: exception);
     } catch (e) {
-      _debugUnExpected('post', e);
-      throw DefaultError('post unexpected', cause: e);
+      _debugUnExpected('[POST]', e);
+      throw DefaultError('[POST] unexpected', cause: e);
     }
   }
 
