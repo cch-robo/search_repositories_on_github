@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:search_repositories_on_github/application/l10n/gen/app_localizations.dart';
+
+import '../l10n/gen/app_localizations.dart';
 
 /// l10n 国際化メッセージ・リソースプロバイダ・サービス
 ///

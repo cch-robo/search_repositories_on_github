@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:search_repositories_on_github/application/l10n/gen/app_localizations.dart';
-import 'package:search_repositories_on_github/application/router/router.dart';
-import 'package:search_repositories_on_github/application/theme/theme.dart';
+
+import '../l10n/gen/app_localizations.dart';
+import '../router/router.dart';
+import '../theme/theme.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

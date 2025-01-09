@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:search_repositories_on_github/application/router/routes.dart';
+
+import '../router/routes.dart';
 
 /// グローバルにアクセス可能な Navigator のキー
 ///
