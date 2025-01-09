@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:search_repositories_on_github/use_case/publications.dart';
+import 'package:search_repositories_on_github/application//publications.dart';
 
 import '../../search_page/page_widget/search_page_widget.dart';
 
