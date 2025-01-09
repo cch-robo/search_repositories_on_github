@@ -58,7 +58,7 @@ void main() {
     await tester.pumpAndSettle(); //画面遷移が完了するまで待機
 
     final Finder secondCountFinder = find.byKey(secondPageCountKey);
-    Text secondCounterLabel =
+    final Text secondCounterLabel =
         secondCountFinder.evaluate().single.widget as Text;
 
     // Verify that our counter has incremented.
