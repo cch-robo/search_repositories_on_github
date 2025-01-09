@@ -11,7 +11,7 @@ import 'package:search_repositories_on_github/application/error/app_error_dialog
 import 'package:search_repositories_on_github/application/l10n/gen/app_localizations_ja.dart';
 import 'package:search_repositories_on_github/application/l10n/l10n_service.dart';
 import 'package:search_repositories_on_github/application/router/router.dart';
-import 'package:search_repositories_on_github/foundation/debug/debug_logger.dart';
+import 'package:search_repositories_on_github/foundation/publications.dart';
 
 /// アプリレベルのエラーハンドラ設定クラス
 class AppErrorHandler {

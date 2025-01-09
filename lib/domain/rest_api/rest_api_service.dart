@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:search_repositories_on_github/foundation/debug/debug_logger.dart';
-import 'package:search_repositories_on_github/foundation/error/default_error.dart';
+import 'package:search_repositories_on_github/foundation/publications.dart';
 
 class RestApiService {
   RestApiService();

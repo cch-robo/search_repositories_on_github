@@ -1,5 +1,5 @@
 import 'package:riverpod/riverpod.dart';
-import 'package:search_repositories_on_github/foundation/debug/debug_logger.dart';
+import 'package:search_repositories_on_github/foundation/publications.dart';
 import 'package:test/test.dart';
 
 import 'riverpod_depend_app.dart';
