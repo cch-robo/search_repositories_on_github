@@ -39,7 +39,7 @@ dev_dependencies:
 
   flutter_launcher_icons: ^0.14.2
 
-  go_router_builder: ^2.7.2
+  go_router_builder: ^2.7.3
   build_runner: ^2.4.14
   build_verify: ^3.1.0
 
