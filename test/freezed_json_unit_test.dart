@@ -25,9 +25,10 @@ void main() {
         Team(teamId: 'Spider Man', persons: <Person>[peter, jane]);
 
     // モデルデータを Json Text から生成
-    // ignore: lines_longer_than_80_chars
-    const String jsonText =
-        '{"team_id":"Spider Man","persons":[{"firstName":"Peter","lastName":"Parker","age":19},{"firstName":"Merry Jane","lastName":"Watson","age":19}]}';
+    // ignore: missing_whitespace_between_adjacent_strings
+    const String jsonText = '{"team_id":"Spider Man","persons":['
+        '{"firstName":"Peter","lastName":"Parker","age":19},'
+        '{"firstName":"Merry Jane","lastName":"Watson","age":19}]}';
     final Team team2 =
         Team.fromJson(json.decode(jsonText) as Map<String, dynamic>);
 
