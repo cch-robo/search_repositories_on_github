@@ -10,4 +10,3 @@
 // 補足：use_case レイヤは、
 // ユースケース都合を優先させるため、domainレイヤをラップしたデータや機能の管理を担うレイヤです。
 //
-export 'package:search_repositories_on_github/application/router/routes.dart';
