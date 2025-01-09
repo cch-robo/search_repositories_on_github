@@ -5,9 +5,13 @@ analyzer:
     strict-casts: true
     strict-inference: true
     strict-raw-types: true
-#  errors:
+  errors:
+    # Workaround for freezing and json_serializable issues
+    invalid_annotation_target: ignore
   exclude:
-    - lib/**.g.dart
+    # see https://github.com/rrousselGit/freezed/issues/488
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
   plugins:
     # enable riverpod_lint
     - custom_lint
