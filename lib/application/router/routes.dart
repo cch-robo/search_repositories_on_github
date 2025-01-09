@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:search_repositories_on_github/presentation/detail_page/page_widget/detail_page_widget.dart';
-import 'package:search_repositories_on_github/presentation/results_page/page_widget/result_page_widget.dart';
-import 'package:search_repositories_on_github/presentation/search_page/page_widget/search_page_widget.dart';
+import 'package:search_repositories_on_github/presentation/publications.dart';
 
 part 'routes.g.dart';
 
