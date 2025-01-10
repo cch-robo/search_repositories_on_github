@@ -1,43 +1,71 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:search_repositories_on_github/application//publications.dart';
+import 'package:search_repositories_on_github/presentation/ui_components/progress_panel.dart';
+import 'package:search_repositories_on_github/presentation/ui_components/repository_card.dart';
 
-import '../../search_page/page_widget/search_page_widget.dart';
+import '../../../application/router/routes.dart';
+import '../../../foundation/publications.dart';
 
-class ResultsPage extends ConsumerWidget {
+class ResultsPage extends HookConsumerWidget {
   const ResultsPage({super.key});
+
+  Dispose? _initState() {
+    return _dispose;
+  }
+
+  Dispose? _dispose() {
+    return null;
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    debugPrint('debug - ResultsPage - build');
-    return Scaffold(
-      appBar: AppBar(title: const Text('Results Page')),
-      body: SafeArea(
-        top: true,
-        bottom: true,
-        left: true,
-        right: true,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              Text(
-                '${ref.read(counterViewModelProvider).count}',
-              ),
-              ElevatedButton(
-                onPressed: () => DetailPageRoute().go(context),
-                child: const Text('Go to the Detail page'),
-              ),
-              ElevatedButton(
-                onPressed: () => context.pop(),
-                child: const Text('Go back to the Search page'),
-              ),
-            ],
+    debugLog('debug - ResultsPage - build');
+    useEffect(_initState, <Object?>[]);
+
+    //FIXME プロバイダもしくは検索サービスからの取得に修正すること。
+    final List<int> items = List<int>.generate(
+      50,
+      (int index) => index,
+    );
+    return Stack(
+      children: <Widget>[
+        Scaffold(
+          body: SafeArea(
+            top: true,
+            bottom: true,
+            left: true,
+            right: true,
+            child: CustomScrollView(
+              slivers: <Widget>[
+                const SliverAppBar(
+                  title: Text('Results Page'),
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      return (index >= items.length)
+                          ? null
+                          : RepositoryCard(
+                              id: index,
+                              name: 'index:$index',
+                              onPressed: (BuildContext context, int id) {
+                                DetailPageRoute().go(context);
+                              },
+                            );
+                    },
+                    /*
+                    childCount: 50, // 無限スクロール対応のためコメントアウト
+                    */
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
+        // 検索実行中のプログレス表示用
+        const ProgressPanel(type: ProgressPageType.results),
+      ],
     );
   }
 }
