@@ -5,15 +5,29 @@ import '../models/search_filers.dart';
 import '../models/search_repositories_info_model.dart';
 import '../rest_api/rest_api_service.dart';
 
+/// GitHub search repository 検索情報リポジトリ
 class SearchedRepoRepository {
-  const SearchedRepoRepository(this._restApiService);
+  SearchedRepoRepository(this._restApiService);
   final RestApiService _restApiService;
 
-  Future<SearchRepoInfoModel> searchRepo({
+  /// リポジトリ検索モデル
+  ///
+  /// クエリパターンごとに検索結果を破棄できるよう Nullable にしています。
+  SearchRepoInfoModel? _searchRepoInfo;
+
+  /// 検索ページングのページカウント数
+  static const int parPage = 20;
+
+  /// リポジトリ検索開始
+  ///
+  /// ある検索条件のクエリをベースにした検索初回（第1ページ）取得を表す。
+  Future<SearchRepoInfoModel> searchRepositories({
     required Query query,
-    required int page,
   }) async {
     try {
+      // 検索情報を破棄
+      _searchRepoInfo = null;
+
       final Response<Map<String, dynamic>> response = await _restApiService.get(
         path: 'https://api.github.com/search/repositories',
         header: <String, String>{
@@ -26,17 +40,54 @@ class SearchedRepoRepository {
           'q': query.toQueryStr(),
           'sort': 'updated',
           'order': 'desc',
-          'per_page': 20,
-          'page': page,
+          'per_page': parPage,
+          'page': 1,
         },
       );
       if (response.statusCode != null) {}
-      return SearchRepoInfoModel(
+      _searchRepoInfo = SearchRepoInfoModel(
         json: response.data!,
         query: query.toQueryStr(),
-        parPage: 10,
-        page: page,
+        perPage: parPage,
       );
+      return _searchRepoInfo!.clone();
+    } on Exception catch (e) {
+      debugLog('debug - SearchedRepoRepository - Exception', cause: e);
+      rethrow;
+    }
+  }
+
+  /// リポジトリ検索継続
+  ///
+  /// ある検索条件のクエリをベースにした次ページの取得を表す。
+  Future<SearchRepoInfoModel> addNextRepositories() async {
+    final SearchRepoInfoModel info = _searchRepoInfo!;
+
+    try {
+      final Response<Map<String, dynamic>> response = await _restApiService.get(
+        path: 'https://api.github.com/search/repositories',
+        header: <String, String>{
+          'Accept': 'application/vnd.github+json',
+          // FIXME 時間があれば、トークン対応する。
+          // 'Authorization': 'Bearer $token',
+          'X-GitHub-Api-Version': '2022-11-28',
+        },
+        queries: <String, dynamic>{
+          'q': info.query,
+          'sort': 'updated',
+          'order': 'desc',
+          'per_page': info.perPage,
+          'page': info.currentPage + 1,
+        },
+      );
+      if (response.statusCode != null) {}
+      info.addNextPage(
+        json: response.data!,
+        query: info.query,
+        perPage: info.perPage,
+        currentPage: info.currentPage + 1,
+      );
+      return info.clone();
     } on Exception catch (e) {
       debugLog('debug - SearchedRepoRepository - Exception', cause: e);
       rethrow;
