@@ -17,6 +17,5 @@ export 'package:search_repositories_on_github/domain/models/search_repositories_
 export 'package:search_repositories_on_github/domain/models/searched_repository_model.dart';
 export 'package:search_repositories_on_github/domain/repository/searched_repo_repository.dart';
 
-//FIXME AppWidgetを Hooks 対応して、アプリ初期化処理からインスタンス設定させること。
 /// クエリ検索結果データを提供するリポジトリのインスタンス
 late final SearchedRepoRepository searchedRepoRepositoryInstance;
