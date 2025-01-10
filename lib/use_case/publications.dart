@@ -10,3 +10,9 @@
 // 補足：use_case レイヤは、
 // ユースケース都合を優先させるため、domainレイヤをラップしたデータや機能の管理を担うレイヤです。
 //
+import 'package:search_repositories_on_github/use_case/service/search_repo_info_service.dart';
+
+export 'package:search_repositories_on_github/use_case/service/search_repo_info_service.dart';
+
+/// クエリ検索結果データを提供するサービスのインスタンス
+late final SearchRepoService searchRepoService;
