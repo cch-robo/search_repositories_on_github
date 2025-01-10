@@ -1,4 +1,4 @@
-import 'package:search_repositories_on_github/domain/models/searched_repository_model.dart';
+import './searched_repository_model.dart';
 
 /// リポジトリ検索モデル
 ///

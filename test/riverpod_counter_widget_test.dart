@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:search_repositories_on_github/foundation/debug/debug_logger.dart';
+import 'package:search_repositories_on_github/foundation/publications.dart';
 
 import 'riverpod_depend_app.dart';
 
