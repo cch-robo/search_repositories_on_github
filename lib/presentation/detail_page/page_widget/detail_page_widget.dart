@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../search_page/page_widget/search_page_widget.dart';
+import '../../ui_components/simple_button.dart';
 
-class DetailPage extends ConsumerWidget {
+class DetailPage extends HookConsumerWidget {
   const DetailPage({super.key});
 
   @override
@@ -22,12 +22,11 @@ class DetailPage extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              Text(
-                '${ref.read(counterViewModelProvider).count}',
-              ),
-              ElevatedButton(
-                onPressed: () => context.pop(),
-                child: const Text('Go back to the Results page'),
+              SimpleButton(
+                label: 'back to Results page',
+                onPressed: (BuildContext context) {
+                  context.pop();
+                },
               ),
             ],
           ),
