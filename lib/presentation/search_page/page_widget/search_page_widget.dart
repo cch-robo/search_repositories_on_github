@@ -97,7 +97,7 @@ class SearchPageState extends State<SearchPage> {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: SimpleButton(
-                    label: 'Go to the Results page',
+                    label: '検索',
                     onPressed: (BuildContext context) {
                       ResultsPageRoute().go(context);
                     },
