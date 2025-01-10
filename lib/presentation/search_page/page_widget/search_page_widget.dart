@@ -87,7 +87,7 @@ class SearchPageState extends State<SearchPage> {
             child: Consumer(
               builder: (BuildContext context, WidgetRef ref, Widget? child) {
                 final SearchPageViewModel viewModel =
-                    ref.watch(searchPageViewModelProvider.notifier);
+                    ref.read(searchPageViewModelProvider.notifier);
 
                 return Column(
                   children: <Widget>[
