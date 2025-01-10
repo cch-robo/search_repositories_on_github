@@ -18,4 +18,4 @@ export 'package:search_repositories_on_github/domain/models/searched_repository_
 export 'package:search_repositories_on_github/domain/repository/searched_repo_repository.dart';
 
 /// クエリ検索結果データを提供するリポジトリのインスタンス
-late final SearchedRepoRepository searchedRepoRepositoryInstance;
+late final SearchedRepoRepository searchRepository;

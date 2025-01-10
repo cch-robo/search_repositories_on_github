@@ -14,9 +14,9 @@ class App extends HookWidget {
   Dispose? _initState() {
     // domain レイヤの公開リポジトリインスタンスを設定
     final RestApiService apiService = RestApiService();
-    final SearchedRepoRepository searchRepository =
+    final SearchedRepoRepository searchRepo =
         SearchedRepoRepository(apiService);
-    searchedRepoRepositoryInstance = searchRepository;
+    searchRepository = searchRepo;
 
     return _dispose;
   }
