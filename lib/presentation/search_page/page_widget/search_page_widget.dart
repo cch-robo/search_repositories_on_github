@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:search_repositories_on_github/application//publications.dart';
+import 'package:search_repositories_on_github/presentation/ui_components/app_icon.dart';
 
 part 'search_page_widget.g.dart';
 
@@ -34,25 +35,31 @@ class SearchPage extends ConsumerWidget {
     debugPrint('debug - SearchPage - build');
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        leading: const AppIcon(),
         title: const Text('Search Page'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '${ref.watch(counterViewModelProvider).count}',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            ElevatedButton(
-              onPressed: () => ResultsPageRoute().go(context),
-              child: const Text('Go to the Results page'),
-            ),
-          ],
+      body: SafeArea(
+        top: true,
+        bottom: true,
+        left: true,
+        right: true,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'You have pushed the button this many times:',
+              ),
+              Text(
+                '${ref.watch(counterViewModelProvider).count}',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              ElevatedButton(
+                onPressed: () => ResultsPageRoute().go(context),
+                child: const Text('Go to the Results page'),
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -60,7 +67,7 @@ class SearchPage extends ConsumerWidget {
             ref.read(counterViewModelProvider.notifier).increment(),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }

@@ -12,19 +12,25 @@ class DetailPage extends ConsumerWidget {
     debugPrint('debug - DetailPage - build');
     return Scaffold(
       appBar: AppBar(title: const Text('Detail Page')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Text(
-              '${ref.read(counterViewModelProvider).count}',
-            ),
-            ElevatedButton(
-              onPressed: () => context.pop(),
-              child: const Text('Go back to the Results page'),
-            ),
-          ],
+      body: SafeArea(
+        top: true,
+        bottom: true,
+        left: true,
+        right: true,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Text(
+                '${ref.read(counterViewModelProvider).count}',
+              ),
+              ElevatedButton(
+                onPressed: () => context.pop(),
+                child: const Text('Go back to the Results page'),
+              ),
+            ],
+          ),
         ),
       ),
     );

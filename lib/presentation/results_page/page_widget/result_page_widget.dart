@@ -13,23 +13,29 @@ class ResultsPage extends ConsumerWidget {
     debugPrint('debug - ResultsPage - build');
     return Scaffold(
       appBar: AppBar(title: const Text('Results Page')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Text(
-              '${ref.read(counterViewModelProvider).count}',
-            ),
-            ElevatedButton(
-              onPressed: () => DetailPageRoute().go(context),
-              child: const Text('Go to the Detail page'),
-            ),
-            ElevatedButton(
-              onPressed: () => context.pop(),
-              child: const Text('Go back to the Search page'),
-            ),
-          ],
+      body: SafeArea(
+        top: true,
+        bottom: true,
+        left: true,
+        right: true,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Text(
+                '${ref.read(counterViewModelProvider).count}',
+              ),
+              ElevatedButton(
+                onPressed: () => DetailPageRoute().go(context),
+                child: const Text('Go to the Detail page'),
+              ),
+              ElevatedButton(
+                onPressed: () => context.pop(),
+                child: const Text('Go back to the Search page'),
+              ),
+            ],
+          ),
         ),
       ),
     );
