@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-// リポジトリ名、オーナーアイコン、プロジェクト言語、Star 数、Watcher 数、Fork 数、Issue 数
-
 /// リポジトリの名前のみを表示するカードです
 class RepositoryCard extends StatelessWidget {
   const RepositoryCard({
