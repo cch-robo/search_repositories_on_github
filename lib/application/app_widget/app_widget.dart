@@ -10,6 +10,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      restorationScopeId: 'app',
       routerConfig: router,
       title: 'Search Repo',
       theme: createThemeData(context),
