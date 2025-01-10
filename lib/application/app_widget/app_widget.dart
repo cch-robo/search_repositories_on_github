@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:search_repositories_on_github/foundation/publications.dart';
 
 import '../l10n/gen/app_localizations.dart';
 import '../router/router.dart';
@@ -9,6 +10,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugLog('debug - AppWidget - build');
     return MaterialApp.router(
       restorationScopeId: 'app',
       routerConfig: router,
