@@ -1,10 +1,17 @@
+import 'dart:async';
+
+import 'package:search_repositories_on_github/application/router/router.dart';
+import 'package:search_repositories_on_github/domain/error/domain_exception.dart';
 import 'package:search_repositories_on_github/domain/publications.dart';
 import 'package:search_repositories_on_github/foundation/publications.dart';
+
+import '../error/use_case_error_dialog.dart';
 
 /// ユースケース・レイヤレベルの検索情報を取得します。
 class SearchRepoService {
   SearchRepoService(this._repository);
   final SearchedRepoRepository _repository;
+  final UseCaseErrorHDialog _errorDialog = UseCaseErrorHDialog();
 
   SearchInfo? _searchInfo;
 
@@ -55,6 +62,11 @@ class SearchRepoService {
     // クエリ生成
     final Query query = Query(items);
     try {
+      // 何も入力されていなかった場合
+      if (items.isEmpty) {
+        throw DomainException('', type: DomainExceptionType.emptyQuery);
+      }
+
       // リポジトリに問い合わせ
       final SearchRepoInfoModel info =
           await _repository.searchRepositories(query: query);
@@ -65,11 +77,28 @@ class SearchRepoService {
         totalCount: info.totalCount,
         repositories: info.repositories,
       );
-    } on Exception catch (exp) {
+    } on DomainException catch (exp) {
       debugLog(
         'SearchRepoService - searchRepoByInQuery catch Exception.',
         cause: exp,
       );
+      final String message = switch (exp.type) {
+        DomainExceptionType.emptyQuery => '検索クエリがありません。',
+        DomainExceptionType.tooLongQuery => '検索クエリは、256文字までです。',
+        DomainExceptionType.dioException => 'ネットワーク通信に問題がでました。',
+        DomainExceptionType.unknownException => '想定外の問題が発生しました。',
+        _ => 'サーバーとの間で問題が発生しました。',
+      };
+
+      if (globalNavigatorContext.mounted) {
+        unawaited(
+          _errorDialog.showErrorAlertDialog(
+            context: globalNavigatorContext,
+            title: 'Error',
+            message: message,
+          ),
+        );
+      }
     }
     return null;
   }
@@ -91,11 +120,28 @@ class SearchRepoService {
         totalCount: info.totalCount,
         repositories: info.repositories,
       );
-    } on Exception catch (exp) {
+    } on DomainException catch (exp) {
       debugLog(
         'SearchRepoService - addNextRepositories catch Exception.',
         cause: exp,
       );
+      final String message = switch (exp.type) {
+        DomainExceptionType.emptyQuery => '検索クエリがありません。',
+        DomainExceptionType.tooLongQuery => '検索クエリは、256文字までです。',
+        DomainExceptionType.dioException => 'ネットワーク通信に問題がでました。',
+        DomainExceptionType.unknownException => '想定外の問題が発生しました。',
+        _ => 'サーバーとの間で問題が発生しました。',
+      };
+
+      if (globalNavigatorContext.mounted) {
+        unawaited(
+          _errorDialog.showErrorAlertDialog(
+            context: globalNavigatorContext,
+            title: 'Error',
+            message: message,
+          ),
+        );
+      }
     }
     return null;
   }
