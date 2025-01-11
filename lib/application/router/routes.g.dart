@@ -62,10 +62,15 @@ extension $ResultsPageRouteExtension on ResultsPageRoute {
 }
 
 extension $DetailPageRouteExtension on DetailPageRoute {
-  static DetailPageRoute _fromState(GoRouterState state) => DetailPageRoute();
+  static DetailPageRoute _fromState(GoRouterState state) => DetailPageRoute(
+        index: int.parse(state.uri.queryParameters['index']!),
+      );
 
   String get location => GoRouteData.$location(
         '/results/detail',
+        queryParams: {
+          'index': index.toString(),
+        },
       );
 
   void go(BuildContext context) => context.go(location);

@@ -11,5 +11,5 @@
 // 画面表示やユースケース都合を優先させる、ユーザーインターフェースの管理を担うレイヤです。
 //
 export 'package:search_repositories_on_github/presentation/detail_page/page_widget/detail_page_widget.dart';
-export 'package:search_repositories_on_github/presentation/results_page/page_widget/result_page_widget.dart';
+export 'package:search_repositories_on_github/presentation/results_page/page_widget/results_page_widget.dart';
 export 'package:search_repositories_on_github/presentation/search_page/page_widget/search_page_widget.dart';

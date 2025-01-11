@@ -35,8 +35,10 @@ class ResultsPageRoute extends GoRouteData {
 
 @immutable
 class DetailPageRoute extends GoRouteData {
+  const DetailPageRoute({required this.index});
+  final int index;
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const DetailPage();
+    return DetailPage(index: index);
   }
 }
