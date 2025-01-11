@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:search_repositories_on_github/domain/models/searched_repository_model.dart';
-import 'package:search_repositories_on_github/foundation/debug/debug_logger.dart';
+import 'package:search_repositories_on_github/domain/publications.dart';
+import 'package:search_repositories_on_github/foundation/publications.dart';
 import 'package:search_repositories_on_github/use_case/publications.dart';
 
 import '../../shared_state_on_pages/state/search_condition_state.dart';
