@@ -8,5 +8,31 @@
   "errorDialogTitle": "Error",
   "errorDialogUnexpectedErrorMessage": "想定外のエラーが発生しました。\n\n問題に対応できないため、アプリを終了してください。",
   "errorButtonOk": "OK",
-  "errorButtonCancel": "Cancel"
+  "errorButtonCancel": "Cancel",
+
+  "errorMessageEmptyQuery": "検索クエリがありません。",
+  "errorMessageTooLongQuery": "検索クエリは、256文字までです。",
+  "errorMessageDioException": "ネットワーク通信に問題がでました。",
+  "errorMessageUnknownException": "想定外の問題が発生しました。",
+  "errorMessageApiProblem": "サーバーとの間で問題が発生しました。",
+
+  "searchPageTitle" : "GitHub リポジトリ検索",
+  "searchRequest" : "検索条件を指定してください。",
+  "searchConditionReadme" : "README 条件",
+  "searchConditionReadmeRequest" : "README に含まれるテキストを入力してください",
+  "searchConditionDescription" : "description 条件",
+  "searchConditionDescriptionRequest" : "description に含まれるテキストを入力してください",
+  "searchConditionRepoName" : "リポジトリ名 条件",
+  "searchConditionRepoNamRequest" : "リポジトリ名 に含まれるテキストを入力してください",
+  "searchConditionTopics" : "topics 条件",
+  "searchConditionTopicsRequest" : "topics のラベルを入力してください",
+  "searchButton" : "検索",
+
+  "detailPageTitle" : "GitHub リポジトリ検索",
+  "detailItemRepoName" : "リポジトリ名",
+  "detailItemOwnerIcon" : "オーナーアイコン",
+  "detailItemLanguage" : "プロジェクト言語",
+  "detailItemStarCount" : "Star 数",
+  "detailItemWatcherCount" : "Watcher 数",
+  "detailItemIssueCount" : "Issue 数"
 }

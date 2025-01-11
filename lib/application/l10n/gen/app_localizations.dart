@@ -133,6 +133,144 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'Cancel'**
   String get errorButtonCancel;
+
+  /// No description provided for @errorMessageEmptyQuery.
+  ///
+  /// In ja, this message translates to:
+  /// **'検索クエリがありません。'**
+  String get errorMessageEmptyQuery;
+
+  /// No description provided for @errorMessageTooLongQuery.
+  ///
+  /// In ja, this message translates to:
+  /// **'検索クエリは、256文字までです。'**
+  String get errorMessageTooLongQuery;
+
+  /// No description provided for @errorMessageDioException.
+  ///
+  /// In ja, this message translates to:
+  /// **'ネットワーク通信に問題がでました。'**
+  String get errorMessageDioException;
+
+  /// No description provided for @errorMessageUnknownException.
+  ///
+  /// In ja, this message translates to:
+  /// **'想定外の問題が発生しました。'**
+  String get errorMessageUnknownException;
+
+  /// No description provided for @errorMessageApiProblem.
+  ///
+  /// In ja, this message translates to:
+  /// **'サーバーとの間で問題が発生しました。'**
+  String get errorMessageApiProblem;
+
+  /// No description provided for @searchPageTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'GitHub リポジトリ検索'**
+  String get searchPageTitle;
+
+  /// No description provided for @searchRequest.
+  ///
+  /// In ja, this message translates to:
+  /// **'検索条件を指定してください。'**
+  String get searchRequest;
+
+  /// No description provided for @searchConditionReadme.
+  ///
+  /// In ja, this message translates to:
+  /// **'README 条件'**
+  String get searchConditionReadme;
+
+  /// No description provided for @searchConditionReadmeRequest.
+  ///
+  /// In ja, this message translates to:
+  /// **'README に含まれるテキストを入力してください'**
+  String get searchConditionReadmeRequest;
+
+  /// No description provided for @searchConditionDescription.
+  ///
+  /// In ja, this message translates to:
+  /// **'description 条件'**
+  String get searchConditionDescription;
+
+  /// No description provided for @searchConditionDescriptionRequest.
+  ///
+  /// In ja, this message translates to:
+  /// **'description に含まれるテキストを入力してください'**
+  String get searchConditionDescriptionRequest;
+
+  /// No description provided for @searchConditionRepoName.
+  ///
+  /// In ja, this message translates to:
+  /// **'リポジトリ名 条件'**
+  String get searchConditionRepoName;
+
+  /// No description provided for @searchConditionRepoNamRequest.
+  ///
+  /// In ja, this message translates to:
+  /// **'リポジトリ名 に含まれるテキストを入力してください'**
+  String get searchConditionRepoNamRequest;
+
+  /// No description provided for @searchConditionTopics.
+  ///
+  /// In ja, this message translates to:
+  /// **'topics 条件'**
+  String get searchConditionTopics;
+
+  /// No description provided for @searchConditionTopicsRequest.
+  ///
+  /// In ja, this message translates to:
+  /// **'topics のラベルを入力してください'**
+  String get searchConditionTopicsRequest;
+
+  /// No description provided for @searchButton.
+  ///
+  /// In ja, this message translates to:
+  /// **'検索'**
+  String get searchButton;
+
+  /// No description provided for @detailPageTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'GitHub リポジトリ検索'**
+  String get detailPageTitle;
+
+  /// No description provided for @detailItemRepoName.
+  ///
+  /// In ja, this message translates to:
+  /// **'リポジトリ名'**
+  String get detailItemRepoName;
+
+  /// No description provided for @detailItemOwnerIcon.
+  ///
+  /// In ja, this message translates to:
+  /// **'オーナーアイコン'**
+  String get detailItemOwnerIcon;
+
+  /// No description provided for @detailItemLanguage.
+  ///
+  /// In ja, this message translates to:
+  /// **'プロジェクト言語'**
+  String get detailItemLanguage;
+
+  /// No description provided for @detailItemStarCount.
+  ///
+  /// In ja, this message translates to:
+  /// **'Star 数'**
+  String get detailItemStarCount;
+
+  /// No description provided for @detailItemWatcherCount.
+  ///
+  /// In ja, this message translates to:
+  /// **'Watcher 数'**
+  String get detailItemWatcherCount;
+
+  /// No description provided for @detailItemIssueCount.
+  ///
+  /// In ja, this message translates to:
+  /// **'Issue 数'**
+  String get detailItemIssueCount;
 }
 
 class _AppLocalizationsDelegate
