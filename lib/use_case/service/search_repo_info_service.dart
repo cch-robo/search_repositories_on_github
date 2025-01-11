@@ -11,6 +11,28 @@ class SearchRepoService {
   /// ユースケースレベルの検索情報
   SearchInfo? get searchInfo => _searchInfo;
 
+  /// index 番号で示されたリポジトリ情報を取得します。
+  ///
+  /// 返却値
+  /// - repo: リポジトリ情報（検索エラーや有効な index でない場合は nullが返る）
+  /// - left: 未取得件数 （検索エラーや有効な index でない場合は 0以下が返る）
+  ({int left, RepoModel? repo}) getRepoInfo(int index) {
+    if (_searchInfo == null) {
+      return (repo: null, left: 0);
+    }
+
+    final SearchInfo info = _searchInfo!;
+    final int loaded = info.repositories.length;
+    final int left = info.totalCount - loaded;
+    if (index < loaded) {
+      return (repo: info.repositories[index], left: left);
+    }
+    if (index < info.totalCount) {
+      return (repo: null, left: left);
+    }
+    return (repo: null, left: info.totalCount - index);
+  }
+
   /// クエリで検索を開始する。
   ///
   /// この API が利用されるユースケースとしては、
@@ -24,7 +46,7 @@ class SearchRepoService {
     // 検索情報を初期化
     _searchInfo = null;
 
-    final List<QueryItem> items = [];
+    final List<QueryItem> items = <QueryItem>[];
     _addQueryItem(items, InFilter.readme, readme);
     _addQueryItem(items, InFilter.description, description);
     _addQueryItem(items, InFilter.name, repoName);
@@ -44,8 +66,10 @@ class SearchRepoService {
         repositories: info.repositories,
       );
     } on Exception catch (exp) {
-      debugLog('SearchRepoService - searchRepoByInQuery catch Exception.',
-          cause: exp);
+      debugLog(
+        'SearchRepoService - searchRepoByInQuery catch Exception.',
+        cause: exp,
+      );
     }
     return null;
   }
@@ -68,8 +92,10 @@ class SearchRepoService {
         repositories: info.repositories,
       );
     } on Exception catch (exp) {
-      debugLog('SearchRepoService - addNextRepositories catch Exception.',
-          cause: exp);
+      debugLog(
+        'SearchRepoService - addNextRepositories catch Exception.',
+        cause: exp,
+      );
     }
     return null;
   }
