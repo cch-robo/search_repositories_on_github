@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:async/async.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:search_repositories_on_github/foundation/publications.dart';
 import 'package:search_repositories_on_github/use_case/publications.dart';
@@ -19,6 +20,8 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
     return const SearchConditionState(condition: Condition.before);
   }
 
+  final AsyncCache<void> cacheStrategy = AsyncCache<void>.ephemeral();
+
   /// 検索中フラグ
   bool get isSearching => state.condition == Condition.searching;
 
@@ -35,7 +38,9 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
     // データ未取得でかつ、取得可能であれば次ページデータを取得する。
     if (res.repo == null && res.left > 0) {
       // 次ページの検索を実行
-      unawaited(searchNext());
+      Future<void>.delayed(const Duration(milliseconds: 500), () {
+        cacheStrategy.fetch(searchNext);
+      });
     }
     return res.repo;
   }
