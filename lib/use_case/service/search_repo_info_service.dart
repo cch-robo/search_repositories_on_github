@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:search_repositories_on_github/application/router/router.dart';
-import 'package:search_repositories_on_github/domain/error/domain_exception.dart';
+import 'package:flutter/material.dart';
+import 'package:search_repositories_on_github/application/publications.dart';
 import 'package:search_repositories_on_github/domain/publications.dart';
 import 'package:search_repositories_on_github/foundation/publications.dart';
 
@@ -45,6 +45,7 @@ class SearchRepoService {
   /// この API が利用されるユースケースとしては、
   /// 検索条件を入力して検索ボタンを押下したときを想定しています。
   Future<SearchInfo?> searchRepoByInQuery({
+    required BuildContext context,
     required String readme,
     required String description,
     required String repoName,
@@ -82,19 +83,22 @@ class SearchRepoService {
         'SearchRepoService - searchRepoByInQuery catch Exception.',
         cause: exp,
       );
-      final String message = switch (exp.type) {
-        DomainExceptionType.emptyQuery => '検索クエリがありません。',
-        DomainExceptionType.tooLongQuery => '検索クエリは、256文字までです。',
-        DomainExceptionType.dioException => 'ネットワーク通信に問題がでました。',
-        DomainExceptionType.unknownException => '想定外の問題が発生しました。',
-        _ => 'サーバーとの間で問題が発生しました。',
-      };
-
-      if (globalNavigatorContext.mounted) {
+      if (context.mounted) {
+        final String message = switch (exp.type) {
+          DomainExceptionType.emptyQuery =>
+            l10n(context).errorMessageEmptyQuery,
+          DomainExceptionType.tooLongQuery =>
+            l10n(context).errorMessageTooLongQuery,
+          DomainExceptionType.dioException =>
+            l10n(context).errorMessageDioException,
+          DomainExceptionType.unknownException =>
+            l10n(context).errorMessageUnknownException,
+          _ => l10n(context).errorMessageApiProblem,
+        };
         unawaited(
           _errorDialog.showErrorAlertDialog(
-            context: globalNavigatorContext,
-            title: 'Error',
+            context: context,
+            title: l10n(context).errorDialogTitle,
             message: message,
           ),
         );
@@ -109,7 +113,9 @@ class SearchRepoService {
   /// 検索結果一覧のスクロールで下端に達したときを想定しています。
   ///
   /// _返却された検索情報には、今まで取得したページ分の情報も含まれています。_
-  Future<SearchInfo?> addNextRepositories() async {
+  Future<SearchInfo?> addNextRepositories({
+    required BuildContext context,
+  }) async {
     try {
       // リポジトリに問い合わせ
       final SearchRepoInfoModel info = await _repository.addNextRepositories();
@@ -125,19 +131,23 @@ class SearchRepoService {
         'SearchRepoService - addNextRepositories catch Exception.',
         cause: exp,
       );
-      final String message = switch (exp.type) {
-        DomainExceptionType.emptyQuery => '検索クエリがありません。',
-        DomainExceptionType.tooLongQuery => '検索クエリは、256文字までです。',
-        DomainExceptionType.dioException => 'ネットワーク通信に問題がでました。',
-        DomainExceptionType.unknownException => '想定外の問題が発生しました。',
-        _ => 'サーバーとの間で問題が発生しました。',
-      };
 
-      if (globalNavigatorContext.mounted) {
+      if (context.mounted) {
+        final String message = switch (exp.type) {
+          DomainExceptionType.emptyQuery =>
+            l10n(context).errorMessageEmptyQuery,
+          DomainExceptionType.tooLongQuery =>
+            l10n(context).errorMessageTooLongQuery,
+          DomainExceptionType.dioException =>
+            l10n(context).errorMessageDioException,
+          DomainExceptionType.unknownException =>
+            l10n(context).errorMessageUnknownException,
+          _ => l10n(context).errorMessageApiProblem,
+        };
         unawaited(
           _errorDialog.showErrorAlertDialog(
-            context: globalNavigatorContext,
-            title: 'Error',
+            context: context,
+            title: l10n(context).errorDialogTitle,
             message: message,
           ),
         );
