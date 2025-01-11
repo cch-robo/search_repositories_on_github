@@ -63,26 +63,34 @@ class DetailPage extends HookConsumerWidget {
                       const Divider(),
                       ListTile(
                         title: const SimpleText('Star 数'),
-                        subtitle: SimpleText(repo.startsCount.toString(),
-                            size: FontSize.medium),
+                        subtitle: SimpleText(
+                          repo.startsCount.toString(),
+                          size: FontSize.medium,
+                        ),
                       ),
                       const Divider(),
                       ListTile(
                         title: const SimpleText('Watcher 数'),
-                        subtitle: SimpleText(repo.watchersCount.toString(),
-                            size: FontSize.medium),
+                        subtitle: SimpleText(
+                          repo.watchersCount.toString(),
+                          size: FontSize.medium,
+                        ),
                       ),
                       const Divider(),
                       ListTile(
                         title: const SimpleText('Fork 数'),
-                        subtitle: SimpleText(repo.forksCount.toString(),
-                            size: FontSize.medium),
+                        subtitle: SimpleText(
+                          repo.forksCount.toString(),
+                          size: FontSize.medium,
+                        ),
                       ),
                       const Divider(),
                       ListTile(
                         title: const SimpleText('Issue 数'),
-                        subtitle: SimpleText(repo.issuesCount.toString(),
-                            size: FontSize.medium),
+                        subtitle: SimpleText(
+                          repo.issuesCount.toString(),
+                          size: FontSize.medium,
+                        ),
                       ),
                       const Divider(),
                     ],
