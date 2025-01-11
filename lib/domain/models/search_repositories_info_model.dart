@@ -1,3 +1,5 @@
+import 'package:search_repositories_on_github/foundation/publications.dart';
+
 import './searched_repository_model.dart';
 
 /// リポジトリ検索モデル
@@ -37,6 +39,10 @@ class SearchRepoInfoModel {
     for (final Map<String, dynamic> json in jsonList) {
       info._repositories.add(RepoModel.fromJson(json));
     }
+
+    debugLog(
+        'SearchRepoInfoModel - total count=$totalCount, items=${items.length}, '
+        'query=$query, perPage=$perPage, currentPage=1');
     return info;
   }
 
@@ -61,23 +67,11 @@ class SearchRepoInfoModel {
       throw Exception('no collect search condition');
     }
 
-    // 継続検索チェック
-    if (_currentPage < currentPage && (currentPage - _currentPage) < perPage) {
-      throw Exception('no collect search condition');
-    }
-
-    // 範囲チェック
-    if (!(lastPage >= currentPage && currentPage > 1)) {
-      throw Exception('no collect search condition');
-    }
-
     final int totalCount = json['total_count'] as int;
     final List<dynamic> items = json['items'] as List<dynamic>;
-
-    // トータル件数チェック
-    if (this.totalCount != totalCount) {
-      throw Exception('no collect search condition');
-    }
+    debugLog(
+        'SearchRepoInfoModel - total count=$totalCount, items=${items.length}, '
+        'query=$query, perPage=$perPage, currentPage=$currentPage');
 
     final List<Map<String, dynamic>> jsonList =
         items.map((dynamic item) => item as Map<String, dynamic>).toList();

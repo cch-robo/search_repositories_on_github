@@ -61,8 +61,10 @@ class SearchedRepoRepository {
       );
       return _searchRepoInfo!.clone();
     } on Exception catch (e) {
-      debugLog('SearchedRepoRepository  - SearchedRepoRepository - Exception',
-          cause: e);
+      debugLog(
+        'SearchedRepoRepository  - SearchedRepoRepository - Exception',
+        cause: e,
+      );
       if (e is DioException) {
         throw DomainException(
           '',
@@ -111,8 +113,10 @@ class SearchedRepoRepository {
       );
       return info.clone();
     } on Exception catch (e) {
-      debugLog('SearchedRepoRepository  - addNextRepositories - Exception',
-          cause: e);
+      debugLog(
+        'SearchedRepoRepository  - addNextRepositories - Exception',
+        cause: e,
+      );
       if (e is DioException) {
         throw DomainException(
           '',
