@@ -114,6 +114,7 @@ class SearchPageState extends State<SearchPage> {
                         label: '検索',
                         onPressed: (BuildContext context) async {
                           await viewModel.search(
+                            context: context,
                             readme: _readmeController.text,
                             description: _descriptionController.text,
                             repoName: _repoNameController.text,

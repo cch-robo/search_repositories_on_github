@@ -44,7 +44,8 @@ class ResultsPage extends HookConsumerWidget {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                      final RepoModel? repo = viewModel.getRepoInfo(index);
+                      final RepoModel? repo =
+                          viewModel.getRepoInfo(context, index);
                       return repo == null
                           ? null
                           : RepositoryCard(
