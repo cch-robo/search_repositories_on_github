@@ -41,13 +41,13 @@ class SearchRepoInfoModel {
   }
 
   /// プライベート・コンストラクタ
-  SearchRepoInfoModel._(
-      {required this.totalCount,
-      required this.query,
-      required this.perPage,
-      required this.lastPage,
-      required int currentPage})
-      : _currentPage = currentPage;
+  SearchRepoInfoModel._({
+    required this.totalCount,
+    required this.query,
+    required this.perPage,
+    required this.lastPage,
+    required int currentPage,
+  }) : _currentPage = currentPage;
 
   /// 検索結果のページネーションより、次のページを取得
   void addNextPage({
