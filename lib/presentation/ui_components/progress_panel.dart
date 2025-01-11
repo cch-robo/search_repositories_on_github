@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:search_repositories_on_github/presentation/results_page/view_model/results_page_view_model.dart';
-import 'package:search_repositories_on_github/presentation/search_page/view_model/search_page_view_model.dart';
+
+import '../results_page/view_model/results_page_view_model.dart';
+import '../search_page/view_model/search_page_view_model.dart';
 
 /// 表示領域いっぱいにプログレス表示するだけのWidget
 ///
