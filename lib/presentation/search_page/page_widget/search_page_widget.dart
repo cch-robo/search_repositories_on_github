@@ -3,13 +3,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:search_repositories_on_github/application/publications.dart';
 import 'package:search_repositories_on_github/foundation/publications.dart';
-import 'package:search_repositories_on_github/presentation/search_page/view_model/search_page_view_model.dart';
-import 'package:search_repositories_on_github/presentation/ui_components/app_icon.dart';
-import 'package:search_repositories_on_github/presentation/ui_components/simple_button.dart';
 
+import '../../ui_components/app_icon.dart';
 import '../../ui_components/progress_panel.dart';
+import '../../ui_components/simple_button.dart';
 import '../../ui_components/simple_text.dart';
 import '../../ui_components/simple_textfield.dart';
+import '../view_model/search_page_view_model.dart';
 
 part 'search_page_widget.g.dart';
 
