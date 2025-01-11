@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:search_repositories_on_github/application/publications.dart';
 import 'package:search_repositories_on_github/foundation/publications.dart';
 
@@ -10,29 +9,6 @@ import '../../ui_components/simple_button.dart';
 import '../../ui_components/simple_text.dart';
 import '../../ui_components/simple_textfield.dart';
 import '../view_model/search_page_view_model.dart';
-
-part 'search_page_widget.g.dart';
-
-@immutable
-class CounterState {
-  const CounterState(this.count);
-
-  final int count;
-}
-
-@riverpod
-class CounterViewModel extends _$CounterViewModel {
-  CounterViewModel();
-
-  @override
-  CounterState build() {
-    return const CounterState(0);
-  }
-
-  void increment() {
-    state = CounterState(state.count + 1);
-  }
-}
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});

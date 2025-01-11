@@ -40,6 +40,7 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
     if (res.repo == null && res.left > 0) {
       // 次ページの検索を実行
       Future<void>.delayed(const Duration(milliseconds: 500), () {
+        // ignore: discarded_futures
         cacheStrategy.fetch(searchNext);
       });
     }
