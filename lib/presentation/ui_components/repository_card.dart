@@ -4,20 +4,20 @@ import 'package:flutter/material.dart';
 class RepositoryCard extends StatelessWidget {
   const RepositoryCard({
     required void Function(BuildContext context, int id) onPressed,
-    required int id,
+    required int index,
     required String name,
     super.key,
   })  : _onPressed = onPressed,
-        _id = id,
+        _index = index,
         _name = name;
 
-  /// リポジトリID
-  final int _id;
+  /// リポジトリ index
+  final int _index;
 
   /// リポジトリ名
   final String _name;
 
-  final void Function(BuildContext context, int id) _onPressed;
+  final void Function(BuildContext context, int index) _onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class RepositoryCard extends StatelessWidget {
               ),
             ],
           ),
-          onTap: () => _onPressed(context, _id),
+          onTap: () => _onPressed(context, _index),
         ),
       ),
     );
