@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:search_repositories_on_github/domain/error/domain_exception.dart';
 import 'package:search_repositories_on_github/foundation/publications.dart';
 
 import '../models/search_filers.dart';
@@ -27,6 +28,11 @@ class SearchedRepoRepository {
     try {
       // 検索情報を破棄
       _searchRepoInfo = null;
+      final String queryString = query.toString();
+      if (queryString.length >= 256) {
+        // 最大長 256文字
+        throw DomainException('', type: DomainExceptionType.tooLongQuery);
+      }
 
       final Response<Map<String, dynamic>> response = await _restApiService.get(
         path: 'https://api.github.com/search/repositories',
@@ -44,7 +50,10 @@ class SearchedRepoRepository {
           'page': 1,
         },
       );
-      if (response.statusCode != null) {}
+
+      _checkError(response.statusCode);
+      debugLog('SearchedRepoRepository  - response.data=${response.data}');
+
       _searchRepoInfo = SearchRepoInfoModel(
         json: response.data!,
         query: query.toQueryStr(),
@@ -52,7 +61,17 @@ class SearchedRepoRepository {
       );
       return _searchRepoInfo!.clone();
     } on Exception catch (e) {
-      debugLog('debug - SearchedRepoRepository - Exception', cause: e);
+      debugLog('SearchedRepoRepository  - SearchedRepoRepository - Exception',
+          cause: e);
+      if (e is DioException) {
+        throw DomainException(
+          '',
+          type: DomainExceptionType.dioException,
+          option: e,
+        );
+      } else if (e is DomainException) {
+        rethrow;
+      }
       rethrow;
     }
   }
@@ -80,7 +99,10 @@ class SearchedRepoRepository {
           'page': info.currentPage + 1,
         },
       );
-      if (response.statusCode != null) {}
+
+      _checkError(response.statusCode);
+      debugLog('SearchedRepoRepository  - response.data=${response.data}');
+
       info.addNextPage(
         json: response.data!,
         query: info.query,
@@ -89,8 +111,51 @@ class SearchedRepoRepository {
       );
       return info.clone();
     } on Exception catch (e) {
-      debugLog('debug - SearchedRepoRepository - Exception', cause: e);
+      debugLog('SearchedRepoRepository  - addNextRepositories - Exception',
+          cause: e);
+      if (e is DioException) {
+        throw DomainException(
+          '',
+          type: DomainExceptionType.dioException,
+          option: e,
+        );
+      } else if (e is DomainException) {
+        rethrow;
+      }
       rethrow;
+    }
+  }
+
+  /// HTTP Status Code error check
+  void _checkError(int? code) {
+    if (code != null) {
+      return;
+    }
+
+    debugLog('SearchedRepoRepository  - response HTTP Status = $code');
+    switch (code) {
+      case 200:
+        break;
+      case 304:
+        throw DomainException(
+          '',
+          type: DomainExceptionType.notModified,
+        );
+      case 422:
+        throw DomainException(
+          '',
+          type: DomainExceptionType.validationFailed,
+        );
+      case 503:
+        throw DomainException(
+          '',
+          type: DomainExceptionType.apiServerError,
+        );
+      default:
+        throw DomainException(
+          '',
+          type: DomainExceptionType.unknownException,
+        );
     }
   }
 }
