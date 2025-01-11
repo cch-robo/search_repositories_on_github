@@ -18,7 +18,6 @@ class DetailPage extends HookConsumerWidget {
   Dispose? _dispose() {
     return null;
   }
-//  リポジトリ名、オーナーアイコン、プロジェクト言語、Star 数、Watcher 数、Fork 数、Issue 数
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -6,11 +6,11 @@ import 'package:search_repositories_on_github/use_case/publications.dart';
 part 'detail_page_view_model.freezed.dart';
 part 'detail_page_view_model.g.dart';
 
-// 表示するリポジトリ情報の index を表すモデルです。
+// 表示するリポジトリ情報を保持するモデルです。
 @freezed
 class DetailPageModelState with _$DetailPageModelState {
   const factory DetailPageModelState({
-    required int index,
+    required RepoModel? repo,
   }) = _DetailPageModelState;
 }
 
@@ -21,22 +21,13 @@ class DetailPageViewModel extends _$DetailPageViewModel {
 
   @override
   DetailPageModelState build() {
-    return const DetailPageModelState(index: 0);
-  }
-
-  /// 詳細表示するリポジトリ情報 index を通知
-  void notifyShowDetail({
-    required int index,
-  }) {
-    // DetailPage は画面更新を行わないので、
-    // state を更新しても、再構築は発生しない。
-    state = state.copyWith(index: index);
+    return const DetailPageModelState(repo: null);
   }
 
   /// リポジトリ情報を取得する。
-  RepoModel? getRepoInfo() {
+  RepoModel? getRepoInfo(int index) {
     final ({RepoModel? repo, int left}) res =
-        searchRepoService.getRepoInfo(state.index);
+        searchRepoService.getRepoInfo(index);
     return res.repo;
   }
 }

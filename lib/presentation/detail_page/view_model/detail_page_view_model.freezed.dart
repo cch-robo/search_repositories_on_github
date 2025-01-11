@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DetailPageModelState {
-  int get index => throw _privateConstructorUsedError;
+  RepoModel? get repo => throw _privateConstructorUsedError;
 
   /// Create a copy of DetailPageModelState
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +31,7 @@ abstract class $DetailPageModelStateCopyWith<$Res> {
           $Res Function(DetailPageModelState) then) =
       _$DetailPageModelStateCopyWithImpl<$Res, DetailPageModelState>;
   @useResult
-  $Res call({int index});
+  $Res call({RepoModel? repo});
 }
 
 /// @nodoc
@@ -50,13 +50,13 @@ class _$DetailPageModelStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? index = null,
+    Object? repo = freezed,
   }) {
     return _then(_value.copyWith(
-      index: null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
+      repo: freezed == repo
+          ? _value.repo
+          : repo // ignore: cast_nullable_to_non_nullable
+              as RepoModel?,
     ) as $Val);
   }
 }
@@ -69,7 +69,7 @@ abstract class _$$DetailPageModelStateImplCopyWith<$Res>
       __$$DetailPageModelStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int index});
+  $Res call({RepoModel? repo});
 }
 
 /// @nodoc
@@ -85,13 +85,13 @@ class __$$DetailPageModelStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? index = null,
+    Object? repo = freezed,
   }) {
     return _then(_$DetailPageModelStateImpl(
-      index: null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
+      repo: freezed == repo
+          ? _value.repo
+          : repo // ignore: cast_nullable_to_non_nullable
+              as RepoModel?,
     ));
   }
 }
@@ -99,14 +99,14 @@ class __$$DetailPageModelStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DetailPageModelStateImpl implements _DetailPageModelState {
-  const _$DetailPageModelStateImpl({required this.index});
+  const _$DetailPageModelStateImpl({required this.repo});
 
   @override
-  final int index;
+  final RepoModel? repo;
 
   @override
   String toString() {
-    return 'DetailPageModelState(index: $index)';
+    return 'DetailPageModelState(repo: $repo)';
   }
 
   @override
@@ -114,11 +114,11 @@ class _$DetailPageModelStateImpl implements _DetailPageModelState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DetailPageModelStateImpl &&
-            (identical(other.index, index) || other.index == index));
+            (identical(other.repo, repo) || other.repo == repo));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, index);
+  int get hashCode => Object.hash(runtimeType, repo);
 
   /// Create a copy of DetailPageModelState
   /// with the given fields replaced by the non-null parameter values.
@@ -132,11 +132,11 @@ class _$DetailPageModelStateImpl implements _DetailPageModelState {
 }
 
 abstract class _DetailPageModelState implements DetailPageModelState {
-  const factory _DetailPageModelState({required final int index}) =
+  const factory _DetailPageModelState({required final RepoModel? repo}) =
       _$DetailPageModelStateImpl;
 
   @override
-  int get index;
+  RepoModel? get repo;
 
   /// Create a copy of DetailPageModelState
   /// with the given fields replaced by the non-null parameter values.
