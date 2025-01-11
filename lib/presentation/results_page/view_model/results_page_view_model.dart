@@ -56,10 +56,8 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
       // 検索コンディションを成功に更新
       state = state.copyWith(condition: Condition.complete);
 
-      debugLog('search  totalRepositories=${info.totalCount}');
-      for (final RepoModel repo in info.repositories) {
-        debugLog('name=${repo.name}');
-      }
+      debugLog('searchNext  totalCount=${info.totalCount}, '
+          'loadedCount=${info.repositories.length}');
     } else {
       // 検索コンディションをエラーに更新
       state = state.copyWith(condition: Condition.error);

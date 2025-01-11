@@ -1,5 +1,4 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:search_repositories_on_github/domain/publications.dart';
 import 'package:search_repositories_on_github/foundation/publications.dart';
 import 'package:search_repositories_on_github/use_case/publications.dart';
 
@@ -46,10 +45,8 @@ class SearchPageViewModel extends _$SearchPageViewModel {
       // 検索コンディションを成功に更新
       state = state.copyWith(condition: Condition.complete);
 
-      debugLog('search  totalRepositories=${info.totalCount}');
-      for (final RepoModel repo in info.repositories) {
-        debugLog('name=${repo.name}');
-      }
+      debugLog('searchRepoByInQuery totalCount=${info.totalCount}, '
+          'loadedCount=${info.repositories.length}');
     } else {
       // 検索コンディションをエラーに更新
       state = state.copyWith(condition: Condition.error);
