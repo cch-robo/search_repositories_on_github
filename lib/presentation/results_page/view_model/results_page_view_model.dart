@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:search_repositories_on_github/foundation/publications.dart';
 import 'package:search_repositories_on_github/use_case/publications.dart';
@@ -25,6 +27,18 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
 
   /// 検索完了フラグ
   bool get isComplete => state.condition == Condition.complete;
+
+  /// index 番号指定のリポジトリ情報を取得する。
+  RepoModel? getRepoInfo(int index) {
+    final ({RepoModel? repo, int left}) res =
+        searchRepoService.getRepoInfo(index);
+    // データ未取得でかつ、取得可能であれば次ページデータを取得する。
+    if (res.repo == null && res.left > 0) {
+      // 次ページの検索を実行
+      unawaited(searchNext());
+    }
+    return res.repo;
+  }
 
   /// 指定クエリで次ページを検索
   Future<void> searchNext() async {
