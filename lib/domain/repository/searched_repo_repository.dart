@@ -52,7 +52,6 @@ class SearchedRepoRepository {
       );
 
       _checkError(response.statusCode);
-      debugLog('SearchedRepoRepository  - response.data=${response.data}');
 
       _searchRepoInfo = SearchRepoInfoModel(
         json: response.data!,
@@ -103,7 +102,6 @@ class SearchedRepoRepository {
       );
 
       _checkError(response.statusCode);
-      debugLog('SearchedRepoRepository  - response.data=${response.data}');
 
       info.addNextPage(
         json: response.data!,
@@ -136,7 +134,6 @@ class SearchedRepoRepository {
       return;
     }
 
-    debugLog('SearchedRepoRepository  - response HTTP Status = $code');
     switch (code) {
       case 200:
         break;
