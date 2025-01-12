@@ -21,7 +21,7 @@ class MockRestApiService extends RestApiService {
   }) async {
     final Response<Map<String, dynamic>> response =
         Response<Map<String, dynamic>>(
-      data: json.decode([page1, page2, page3].elementAt(requestIndex++))
+      data: json.decode(<String>[page1, page2, page3].elementAt(requestIndex++))
           as Map<String, dynamic>,
       requestOptions: RequestOptions(),
       statusCode: 200,
@@ -31,7 +31,7 @@ class MockRestApiService extends RestApiService {
 }
 
 class MockSearchRepoService extends SearchRepoService {
-  MockSearchRepoService(super.repository);
+  MockSearchRepoService(super._repository);
 
   @override
   Future<SearchInfo?> searchRepoByInQuery({
