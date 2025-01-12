@@ -123,6 +123,7 @@ GitHub テンプレートをベースに独自の Pull Request テンプレー�
 
 _利用できるのであれば、公開されているテンプレートを使います。_
 
+
 ## アプリの特徴について
 
 ### 国際化対応
@@ -226,4 +227,8 @@ _プロジェクト内のディレクトリ名は、上記の概念を反映し�
   [https://github.com/cch-robo/search_repositories_on_github/pull/48](https://github.com/cch-robo/search_repositories_on_github/pull/48)
 
 
+## アプリ画像
+![Demo_SearchPage](docs/images/Demo_SearchPage.png)
+![Demo_ResultPage](docs/images/Demo_ResultPage.png)
+![Demo_DetailPage](docs/images/Demo_DetailPage.png)
 
