@@ -1,6 +1,7 @@
 .PHONY: setup
 
 setup:
+	fvm use
 	fvm flutter config --no-enable-web
 	fvm flutter config --no-enable-windows-desktop
 	fvm flutter config --no-enable-linux-desktop
