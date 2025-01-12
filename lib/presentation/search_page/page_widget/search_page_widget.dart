@@ -87,7 +87,8 @@ class SearchPageState extends State<SearchPage> {
                               ),
                               const SizedBox(height: 20),
                               SimpleText(
-                                  l10n(context).searchConditionDescription),
+                                l10n(context).searchConditionDescription,
+                              ),
                               SimpleTextField(
                                 labelText: l10n(context)
                                     .searchConditionDescriptionRequest,
