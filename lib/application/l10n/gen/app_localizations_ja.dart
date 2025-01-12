@@ -91,6 +91,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get detailItemStarCount => 'Star 数';
 
   @override
+  String get detailItemForkCount => 'Fork 数';
+
+  @override
   String get detailItemWatcherCount => 'Watcher 数';
 
   @override

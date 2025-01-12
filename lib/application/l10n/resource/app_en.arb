@@ -30,6 +30,7 @@
   "detailItemOwnerIcon" : "Owner icon",
   "detailItemLanguage" : "Project language",
   "detailItemStarCount" : "Number of stars",
+  "detailItemForkCount" : "Number of forks",
   "detailItemWatcherCount" : "Number of watchers",
   "detailItemIssueCount" : "Number of issues"
 }

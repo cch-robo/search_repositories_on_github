@@ -33,6 +33,7 @@
   "detailItemOwnerIcon" : "オーナーアイコン",
   "detailItemLanguage" : "プロジェクト言語",
   "detailItemStarCount" : "Star 数",
+  "detailItemForkCount" : "Fork 数",
   "detailItemWatcherCount" : "Watcher 数",
   "detailItemIssueCount" : "Issue 数"
 }

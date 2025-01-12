@@ -260,6 +260,12 @@ abstract class AppLocalizations {
   /// **'Star 数'**
   String get detailItemStarCount;
 
+  /// No description provided for @detailItemForkCount.
+  ///
+  /// In ja, this message translates to:
+  /// **'Fork 数'**
+  String get detailItemForkCount;
+
   /// No description provided for @detailItemWatcherCount.
   ///
   /// In ja, this message translates to:
