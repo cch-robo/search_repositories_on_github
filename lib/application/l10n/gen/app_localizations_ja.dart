@@ -42,7 +42,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get errorMessageApiProblem => 'サーバーとの間で問題が発生しました。';
 
   @override
-  String get searchPageTitle => 'GitHub リポジトリ検索';
+  String get searchPageTitle => 'Search Page';
+
+  @override
+  String get searchPageSubTitle => 'GitHub リポジトリ検索';
 
   @override
   String get searchRequest => '検索条件を指定してください。';
@@ -76,7 +79,16 @@ class AppLocalizationsJa extends AppLocalizations {
   String get searchButton => '検索';
 
   @override
-  String get detailPageTitle => 'GitHub リポジトリ検索';
+  String get resultsPageTitle => 'Results Page';
+
+  @override
+  String get resultsPageSubTitle => 'GitHub リポジトリ検索';
+
+  @override
+  String get detailPageTitle => 'Detail Page';
+
+  @override
+  String get detailPageSubTitle => 'GitHub リポジトリ検索';
 
   @override
   String get detailItemRepoName => 'リポジトリ名';

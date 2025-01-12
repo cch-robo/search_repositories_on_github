@@ -167,8 +167,14 @@ abstract class AppLocalizations {
   /// No description provided for @searchPageTitle.
   ///
   /// In ja, this message translates to:
-  /// **'GitHub リポジトリ検索'**
+  /// **'Search Page'**
   String get searchPageTitle;
+
+  /// No description provided for @searchPageSubTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'GitHub リポジトリ検索'**
+  String get searchPageSubTitle;
 
   /// No description provided for @searchRequest.
   ///
@@ -230,11 +236,29 @@ abstract class AppLocalizations {
   /// **'検索'**
   String get searchButton;
 
-  /// No description provided for @detailPageTitle.
+  /// No description provided for @resultsPageTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'Results Page'**
+  String get resultsPageTitle;
+
+  /// No description provided for @resultsPageSubTitle.
   ///
   /// In ja, this message translates to:
   /// **'GitHub リポジトリ検索'**
+  String get resultsPageSubTitle;
+
+  /// No description provided for @detailPageTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'Detail Page'**
   String get detailPageTitle;
+
+  /// No description provided for @detailPageSubTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'GitHub リポジトリ検索'**
+  String get detailPageSubTitle;
 
   /// No description provided for @detailItemRepoName.
   ///

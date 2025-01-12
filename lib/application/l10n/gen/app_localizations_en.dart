@@ -44,7 +44,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errorMessageApiProblem => 'A problem occurred with the server.';
 
   @override
-  String get searchPageTitle => 'GitHub repository search';
+  String get searchPageTitle => 'Results Page';
+
+  @override
+  String get searchPageSubTitle => 'GitHub repository search';
 
   @override
   String get searchRequest => 'Please specify search conditions.';
@@ -80,7 +83,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchButton => 'Search';
 
   @override
-  String get detailPageTitle => 'GitHub repository search';
+  String get resultsPageTitle => 'Results Page';
+
+  @override
+  String get resultsPageSubTitle => 'GitHub リポジトリ検索';
+
+  @override
+  String get detailPageTitle => 'Detail Page';
+
+  @override
+  String get detailPageSubTitle => 'GitHub repository search';
 
   @override
   String get detailItemRepoName => 'Repository name';

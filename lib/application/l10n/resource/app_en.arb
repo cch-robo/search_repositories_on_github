@@ -13,7 +13,8 @@
   "errorMessageUnknownException": "An unexpected problem occurred.",
   "errorMessageApiProblem": "A problem occurred with the server.",
 
-  "searchPageTitle": "GitHub repository search",
+  "searchPageTitle" : "Search Page",
+  "searchPageSubTitle": "GitHub repository search",
   "searchRequest": "Please specify search conditions.",
   "searchConditionReadme": "README condition",
   "searchConditionReadmeRequest": "Please enter text contained in README",
@@ -25,7 +26,11 @@
   "searchConditionTopicsRequest" : "Enter topic label",
   "searchButton" : "Search",
 
-  "detailPageTitle" : "GitHub repository search",
+  "searchPageTitle" : "Results Page",
+  "searchPageSubTitle": "GitHub repository search",
+
+  "detailPageTitle" : "Detail Page",
+  "detailPageSubTitle" : "GitHub repository search",
   "detailItemRepoName" : "Repository name",
   "detailItemOwnerIcon" : "Owner icon",
   "detailItemLanguage" : "Project language",

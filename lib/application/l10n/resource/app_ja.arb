@@ -16,7 +16,8 @@
   "errorMessageUnknownException": "想定外の問題が発生しました。",
   "errorMessageApiProblem": "サーバーとの間で問題が発生しました。",
 
-  "searchPageTitle" : "GitHub リポジトリ検索",
+  "searchPageTitle" : "Search Page",
+  "searchPageSubTitle" : "GitHub リポジトリ検索",
   "searchRequest" : "検索条件を指定してください。",
   "searchConditionReadme" : "README 条件",
   "searchConditionReadmeRequest" : "README に含まれるテキストを入力してください",
@@ -28,7 +29,11 @@
   "searchConditionTopicsRequest" : "topics のラベルを入力してください",
   "searchButton" : "検索",
 
-  "detailPageTitle" : "GitHub リポジトリ検索",
+  "resultsPageTitle" : "Results Page",
+  "resultsPageSubTitle" : "GitHub リポジトリ検索",
+
+  "detailPageTitle" : "Detail Page",
+  "detailPageSubTitle" : "GitHub リポジトリ検索",
   "detailItemRepoName" : "リポジトリ名",
   "detailItemOwnerIcon" : "オーナーアイコン",
   "detailItemLanguage" : "プロジェクト言語",
