@@ -38,13 +38,14 @@ class ResultsPage extends HookConsumerWidget {
             right: true,
             child: CustomScrollView(
               slivers: <Widget>[
-                const SliverAppBar(
-                  title: Text('Results Page'),
+                SliverAppBar(
+                  title: Text(l10n(context).resultsPageTitle),
                 ),
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                      final RepoModel? repo = viewModel.getRepoInfo(index);
+                      final RepoModel? repo =
+                          viewModel.getRepoInfo(context, index);
                       return repo == null
                           ? null
                           : RepositoryCard(

@@ -12,6 +12,7 @@
 //
 import 'package:search_repositories_on_github/domain/repository/searched_repo_repository.dart';
 
+export 'package:search_repositories_on_github/domain/error/domain_exception.dart';
 export 'package:search_repositories_on_github/domain/models/search_filers.dart';
 export 'package:search_repositories_on_github/domain/models/search_repositories_info_model.dart';
 export 'package:search_repositories_on_github/domain/models/searched_repository_model.dart';

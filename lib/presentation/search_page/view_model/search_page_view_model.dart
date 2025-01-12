@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:search_repositories_on_github/foundation/publications.dart';
 import 'package:search_repositories_on_github/use_case/publications.dart';
@@ -27,6 +28,7 @@ class SearchPageViewModel extends _$SearchPageViewModel {
 
   /// 指定クエリでリポジトリを検索
   Future<void> search({
+    required BuildContext context,
     required String readme,
     required String description,
     required String repoName,
@@ -36,6 +38,7 @@ class SearchPageViewModel extends _$SearchPageViewModel {
     state = state.copyWith(condition: Condition.searching);
 
     final SearchInfo? info = await searchRepoService.searchRepoByInQuery(
+      context: context,
       readme: readme,
       description: description,
       repoName: repoName,
