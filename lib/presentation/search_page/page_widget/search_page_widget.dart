@@ -73,7 +73,7 @@ class SearchPageState extends State<SearchPage> {
                         child: Center(
                           child: Column(
                             children: <Widget>[
-                              SimpleText(l10n(context).searchPageTitle),
+                              SimpleText(l10n(context).searchPageSubTitle),
                               SimpleText(
                                 l10n(context).searchRequest,
                                 size: FontSize.large,

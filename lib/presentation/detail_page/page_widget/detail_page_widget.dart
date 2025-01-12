@@ -30,7 +30,9 @@ class DetailPage extends HookConsumerWidget {
     final RepoModel repo = viewModel.getRepoInfo(index)!;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Detail Page')),
+      appBar: AppBar(
+        title: Text(l10n(context).detailPageTitle),
+      ),
       body: SafeArea(
         top: true,
         bottom: true,
@@ -44,7 +46,7 @@ class DetailPage extends HookConsumerWidget {
                 child: Center(
                   child: Column(
                     children: <Widget>[
-                      SimpleText(l10n(context).detailPageTitle),
+                      SimpleText(l10n(context).detailPageSubTitle),
                       const Divider(),
                       ListTile(
                         title: SimpleText(l10n(context).detailItemRepoName),
