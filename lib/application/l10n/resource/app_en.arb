@@ -1,0 +1,41 @@
+{
+  "appDescription": "The Search Repo app uses the GitHub API to search repositories with arbitrary queries.",
+  "appTitle": "Search Repo",
+
+  "errorDialogTitle": "Error",
+  "errorDialogUnexpectedErrorMessage": "An unexpected error has occurred.\n\nWe are unable to fix the problem so please close the app.",
+  "errorButtonOk": "OK",
+  "errorButtonCancel": "Cancel",
+
+  "errorMessageEmptyQuery": "There is no search query.",
+  "errorMessageTooLongQuery": "Search queries cannot exceed 256 characters.",
+  "errorMessageDioException": "A network communication problem occurred.",
+  "errorMessageUnknownException": "An unexpected problem occurred.",
+  "errorMessageApiProblem": "A problem occurred with the server.",
+
+  "searchPageTitle" : "Search Page",
+  "searchPageSubTitle": "GitHub repository search",
+  "searchRequest": "Please specify search conditions.",
+  "searchConditionReadme": "README condition",
+  "searchConditionReadmeRequest": "Please enter text contained in README",
+  "searchConditionDescription": "description condition",
+  "searchConditionDescriptionRequest": "Please enter text contained in description",
+  "searchConditionRepoName": "Repository name condition",
+  "searchConditionRepoNamRequest": "Please enter text contained in repository name",
+  "searchConditionTopics": "topics condition",
+  "searchConditionTopicsRequest" : "Enter topic label",
+  "searchButton" : "Search",
+
+  "searchPageTitle" : "Results Page",
+  "searchPageSubTitle": "GitHub repository search",
+
+  "detailPageTitle" : "Detail Page",
+  "detailPageSubTitle" : "GitHub repository search",
+  "detailItemRepoName" : "Repository name",
+  "detailItemOwnerIcon" : "Owner icon",
+  "detailItemLanguage" : "Project language",
+  "detailItemStarCount" : "Number of stars",
+  "detailItemForkCount" : "Number of forks",
+  "detailItemWatcherCount" : "Number of watchers",
+  "detailItemIssueCount" : "Number of issues"
+}

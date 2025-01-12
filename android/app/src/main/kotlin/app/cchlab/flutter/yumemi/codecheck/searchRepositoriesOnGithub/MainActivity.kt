@@ -1,4 +1,4 @@
-package app.cchlab.flutter.yumemi.codecheck.search_repositories_on_github
+package app.cchlab.flutter.yumemi.codecheck.searchRepositoriesOnGithub
 
 import io.flutter.embedding.android.FlutterActivity
 
