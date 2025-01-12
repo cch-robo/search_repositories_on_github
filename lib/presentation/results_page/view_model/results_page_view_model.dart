@@ -58,12 +58,12 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
     if (info != null) {
       // 検索コンディションを成功に更新
       state = state.copyWith(condition: Condition.complete);
-
       debugLog('searchNext  totalCount=${info.totalCount}, '
-          'loadedCount=${info.repositories.length}');
+          'loadedCount=${info.repositories.length}\n');
     } else {
       // 検索コンディションをエラーに更新
       state = state.copyWith(condition: Condition.error);
+      debugLog('searchNext  error\n');
     }
   }
 }
