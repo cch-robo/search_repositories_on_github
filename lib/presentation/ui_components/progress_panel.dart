@@ -20,12 +20,16 @@ class ProgressPanel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // bool isSearching フラグを監視する。
+    // プログレス表示を使うプロバイダの state を監視する。
+    ref.watch(searchPageViewModelProvider);
+    ref.watch(resultsPageViewModelProvider);
+
+    // bool isSearching フラグをチェック。
     final bool isProgress = switch (_type) {
       ProgressPageType.search =>
-        ref.watch(searchPageViewModelProvider.notifier).isSearching,
+        ref.read(searchPageViewModelProvider.notifier).isSearching,
       ProgressPageType.results =>
-        ref.watch(resultsPageViewModelProvider.notifier).isSearching,
+        ref.read(resultsPageViewModelProvider.notifier).isSearching,
       ProgressPageType.detail => false,
     };
 
