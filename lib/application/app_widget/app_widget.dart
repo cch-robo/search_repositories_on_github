@@ -10,18 +10,41 @@ import '../router/router.dart';
 import '../theme/theme.dart';
 
 class App extends HookWidget {
-  const App({super.key});
+  const App({
+    RestApiService? apiService,
+    SearchedRepoRepository? searchRepo,
+    SearchRepoService? service,
+    super.key,
+  })  : _apiService = apiService,
+        _searchRepo = searchRepo,
+        _useCaseService = service;
+
+  /// （オプション）テストモック注入用インスタンス
+  ///
+  /// _アプリ起動用の main.drat では利用されない。_
+  final RestApiService? _apiService;
+
+  /// （オプション）テストモック注入用インスタンス
+  ///
+  /// _アプリ起動用の main.dart では利用されない。_
+  final SearchedRepoRepository? _searchRepo;
+
+  /// （オプション）テストモック注入用インスタンス
+  ///
+  /// _アプリ起動用の main.dart では利用されない。_
+  final SearchRepoService? _useCaseService;
 
   Dispose? _initState() {
     debugLog('debug - AppWidget - initState');
     // domain レイヤの公開リポジトリインスタンスを設定
-    final RestApiService apiService = RestApiService();
+    final RestApiService apiService = _apiService ?? RestApiService();
     final SearchedRepoRepository searchRepo =
-        SearchedRepoRepository(apiService);
+        _searchRepo ?? SearchedRepoRepository(apiService);
     searchRepository = searchRepo;
 
     // use_case レイヤの公開サービスインスタンスを設定
-    final SearchRepoService service = SearchRepoService(searchRepo);
+    final SearchRepoService service =
+        _useCaseService ?? SearchRepoService(searchRepo);
     searchRepoService = service;
 
     return _dispose;
