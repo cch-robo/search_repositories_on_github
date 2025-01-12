@@ -73,33 +73,38 @@ class SearchPageState extends State<SearchPage> {
                         child: Center(
                           child: Column(
                             children: <Widget>[
-                              const SimpleText('GitHub リポジトリ検索'),
-                              const SimpleText(
-                                '検索条件を指定してください。',
+                              SimpleText(l10n(context).searchPageTitle),
+                              SimpleText(
+                                l10n(context).searchRequest,
                                 size: FontSize.large,
                               ),
                               const SizedBox(height: 20),
-                              const SimpleText('README 条件'),
+                              SimpleText(l10n(context).searchConditionReadme),
                               SimpleTextField(
-                                labelText: 'README に含まれるテキストを入力してください',
+                                labelText:
+                                    l10n(context).searchConditionReadmeRequest,
                                 controller: _readmeController,
                               ),
                               const SizedBox(height: 20),
-                              const SimpleText('description 条件'),
+                              SimpleText(
+                                  l10n(context).searchConditionDescription),
                               SimpleTextField(
-                                labelText: 'description に含まれるテキストを入力してください',
+                                labelText: l10n(context)
+                                    .searchConditionDescriptionRequest,
                                 controller: _descriptionController,
                               ),
                               const SizedBox(height: 20),
-                              const SimpleText('リポジトリ名 条件'),
+                              SimpleText(l10n(context).searchConditionRepoName),
                               SimpleTextField(
-                                labelText: 'リポジトリ名 に含まれるテキストを入力してください',
+                                labelText:
+                                    l10n(context).searchConditionRepoNamRequest,
                                 controller: _repoNameController,
                               ),
                               const SizedBox(height: 20),
-                              const SimpleText('topics 条件'),
+                              SimpleText(l10n(context).searchConditionTopics),
                               SimpleTextField(
-                                labelText: 'topics のラベルを入力してください',
+                                labelText:
+                                    l10n(context).searchConditionTopicsRequest,
                                 controller: _topicsController,
                               ),
                             ],
@@ -111,7 +116,7 @@ class SearchPageState extends State<SearchPage> {
                     Padding(
                       padding: const EdgeInsets.all(16),
                       child: SimpleButton(
-                        label: '検索',
+                        label: l10n(context).searchButton,
                         onPressed: (BuildContext context) async {
                           await viewModel.search(
                             context: context,

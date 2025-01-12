@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:search_repositories_on_github/application/publications.dart';
 import 'package:search_repositories_on_github/domain/publications.dart';
 
 import '../../ui_components/simple_text.dart';
@@ -43,26 +44,27 @@ class DetailPage extends HookConsumerWidget {
                 child: Center(
                   child: Column(
                     children: <Widget>[
-                      const SimpleText('GitHub リポジトリ検索'),
+                      SimpleText(l10n(context).detailPageTitle),
                       const Divider(),
                       ListTile(
-                        title: const SimpleText('リポジトリ名'),
+                        title: SimpleText(l10n(context).detailItemRepoName),
                         subtitle: SimpleText(repo.name, size: FontSize.medium),
                       ),
                       const Divider(),
+                      SimpleText(l10n(context).detailItemOwnerIcon),
                       FittedBox(
                         fit: BoxFit.contain,
                         child: Image.network(repo.ownerAvatarUrl),
                       ),
                       const Divider(),
                       ListTile(
-                        title: const SimpleText('プロジェクト言語'),
+                        title: SimpleText(l10n(context).detailItemLanguage),
                         subtitle:
                             SimpleText(repo.language, size: FontSize.medium),
                       ),
                       const Divider(),
                       ListTile(
-                        title: const SimpleText('Star 数'),
+                        title: SimpleText(l10n(context).detailItemStarCount),
                         subtitle: SimpleText(
                           repo.startsCount.toString(),
                           size: FontSize.medium,
@@ -70,7 +72,7 @@ class DetailPage extends HookConsumerWidget {
                       ),
                       const Divider(),
                       ListTile(
-                        title: const SimpleText('Watcher 数'),
+                        title: SimpleText(l10n(context).detailItemForkCount),
                         subtitle: SimpleText(
                           repo.watchersCount.toString(),
                           size: FontSize.medium,
@@ -78,7 +80,7 @@ class DetailPage extends HookConsumerWidget {
                       ),
                       const Divider(),
                       ListTile(
-                        title: const SimpleText('Fork 数'),
+                        title: SimpleText(l10n(context).detailItemWatcherCount),
                         subtitle: SimpleText(
                           repo.forksCount.toString(),
                           size: FontSize.medium,
@@ -86,7 +88,7 @@ class DetailPage extends HookConsumerWidget {
                       ),
                       const Divider(),
                       ListTile(
-                        title: const SimpleText('Issue 数'),
+                        title: SimpleText(l10n(context).detailItemIssueCount),
                         subtitle: SimpleText(
                           repo.issuesCount.toString(),
                           size: FontSize.medium,
