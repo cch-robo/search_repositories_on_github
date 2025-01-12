@@ -70,7 +70,7 @@ void main() {
 
     debugLog('\nStep.1 - README条件 "カレーライス"での検索ボタンをタップした結果');
     int index = 0;
-    for (RepoModel repo in useCaseService.searchInfo!.repositories) {
+    for (final RepoModel repo in useCaseService.searchInfo!.repositories) {
       debugLog('index=${index++} - リポジトリ名:${repo.name}');
     }
 
@@ -99,7 +99,7 @@ void main() {
     final ({int left, RepoModel? repo}) res = useCaseService.getRepoInfo(6);
     expect(res.repo!.name, 'ChatApp'); //リポジトリ名
     expect(res.repo!.ownerAvatarUrl,
-        'https://avatars.githubusercontent.com/u/112800723?v=4'); //オーナーアイコン URL
+        'https://avatars.githubusercontent.com/u/112800723?v=4',); //オーナーアイコン URL
     // 【参考】同一シチュエーションでの Detail Page 画面表示については、
     // Results Page の検索一覧の7番目(index 6)をタップしたときのスナップショットを参照
     // test/use_case_service/search_result_index_6_chatApp_detail_page.png
@@ -140,7 +140,7 @@ void main() {
     // 無限スクロールが発生したとして、次ページ検査検索を実行させる。
     // 検索結果一覧画面 Results Page の context 取得
     final BuildContext context = tester.element(
-        find.byWidgetPredicate((Widget widget) => widget is ResultsPage));
+        find.byWidgetPredicate((Widget widget) => widget is ResultsPage),);
     final SearchInfo? secondState =
         await useCaseService.addNextRepositories(context: context);
 
