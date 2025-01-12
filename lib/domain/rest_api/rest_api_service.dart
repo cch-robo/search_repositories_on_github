@@ -86,8 +86,11 @@ class RestApiService {
     debugLog('\n$method request - data=${data ?? ""}\n');
   }
 
-  void _debugResponse(String method, Response<Map<String, dynamic>> response,
-      {bool isDetail = false,}) {
+  void _debugResponse(
+    String method,
+    Response<Map<String, dynamic>> response, {
+    bool isDetail = false,
+  }) {
     debugLog(
       '\n$method response {\n'
       '    request.uri: ${response.requestOptions.uri}\n'
