@@ -52,18 +52,20 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
   Future<void> searchNext(BuildContext context) async {
     // 検索コンディションを 検索中に更新
     state = state.copyWith(condition: Condition.searching);
+    debugLog('searchNext  searching');
 
+    // 次ページ検索実行
     final SearchInfo? info =
         await searchRepoService.addNextRepositories(context: context);
     if (info != null) {
       // 検索コンディションを成功に更新
       state = state.copyWith(condition: Condition.complete);
-
-      debugLog('searchNext  totalCount=${info.totalCount}, '
-          'loadedCount=${info.repositories.length}');
+      debugLog('searchNext  complete - totalCount=${info.totalCount}, '
+          'loadedCount=${info.repositories.length}\n');
     } else {
       // 検索コンディションをエラーに更新
       state = state.copyWith(condition: Condition.error);
+      debugLog('searchNext  error\n');
     }
   }
 }

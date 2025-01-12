@@ -116,6 +116,12 @@ class SearchRepoService {
   Future<SearchInfo?> addNextRepositories({
     required BuildContext context,
   }) async {
+    // 次ページ検索条件チェック
+    if (searchInfo == null ||
+        searchInfo!.totalCount == searchInfo!.repositories.length) {
+      return searchInfo;
+    }
+
     try {
       // リポジトリに問い合わせ
       final SearchRepoInfoModel info = await _repository.addNextRepositories();

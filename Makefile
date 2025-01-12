@@ -30,3 +30,19 @@ run:
 
 unit-test:
 	fvm flutter test test/
+
+build-debug-apk:
+	fvm use
+	fvm flutter build apk --debug
+
+#build-apk:
+#	fvm use
+#	fvm flutter build apk --release
+
+#build-bundle:
+#	fvm use
+#	fvm flutter build appbundle --release
+
+#build-ios:
+#	fvm use
+#	fvm flutter build ios --release
