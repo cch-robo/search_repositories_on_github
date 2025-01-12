@@ -37,11 +37,11 @@ class ProgressPanel extends ConsumerWidget {
         ? Container(
             color: Colors.transparent,
             alignment: Alignment.center,
-            child: const SizedBox(
+            child: SizedBox(
               width: 48,
               height: 48,
               child: CircularProgressIndicator(
-                color: Colors.blue,
+                color: Theme.of(context).colorScheme.inversePrimary,
                 strokeWidth: 8,
               ),
             ),
