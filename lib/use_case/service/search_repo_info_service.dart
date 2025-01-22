@@ -10,7 +10,6 @@ import '../error/use_case_error_dialog.dart';
 /// ユースケース・レイヤレベルの検索情報を取得します。
 class SearchRepoService {
   SearchRepoService(this._repository);
-
   final SearchedRepoRepository _repository;
   final UseCaseErrorHDialog _errorDialog = UseCaseErrorHDialog();
 
@@ -145,6 +144,8 @@ class SearchRepoService {
             l10n(context).errorMessageEmptyQuery,
           DomainExceptionType.tooLongQuery =>
             l10n(context).errorMessageTooLongQuery,
+          DomainExceptionType.overRateLimits =>
+            l10n(context).errorMessageOverRateLimits,
           DomainExceptionType.dioException =>
             l10n(context).errorMessageDioException,
           DomainExceptionType.unknownException =>
