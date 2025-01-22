@@ -226,16 +226,20 @@ _プロジェクト内のディレクトリ名は、上記の概念を反映し�
 - インポート構成を改良 #48  
   [https://github.com/cch-robo/search_repositories_on_github/pull/48](https://github.com/cch-robo/search_repositories_on_github/pull/48)
 
-- エラーダイアログ表示中は、検索サービスを停止しています。
+
+## その他の対応
+- エラーダイアログ表示中は、検索サービスを停止しています。  
   _エラーダイアログが複数件表示されません。_
   [https://github.com/cch-robo/search_repositories_on_github/pull/64](https://github.com/cch-robo/search_repositories_on_github/pull/64)
 
-− ResultsPageの AppBarを固定表示にしています。
+- ResultsPageの AppBarを固定表示にしています。  
+  _AppBarの固定表示により、SearchPageに戻りやすくなっています。_
   [https://github.com/cch-robo/search_repositories_on_github/pull/66](https://github.com/cch-robo/search_repositories_on_github/pull/66)
 
-- SearchPageは、縦方向画面のみに制限する。
+- SearchPageは、縦方向画面のみに制限してます。  
   _狭小画面デバイスで、検索条件と検索ボタンとソフトキーボードの表示領域がない場合に対応しています。_
   [https://github.com/cch-robo/search_repositories_on_github/pull/68](https://github.com/cch-robo/search_repositories_on_github/pull/68)
+
 
 ## アプリ画像
 ![Demo_SearchPage](docs/images/Demo_SearchPage.png)
