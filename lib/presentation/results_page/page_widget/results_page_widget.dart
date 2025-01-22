@@ -40,6 +40,9 @@ class ResultsPage extends HookConsumerWidget {
               slivers: <Widget>[
                 SliverAppBar(
                   title: Text(l10n(context).resultsPageTitle),
+                  pinned: true,
+                  backgroundColor: Theme.of(context).colorScheme.surface,
+                  surfaceTintColor: Theme.of(context).colorScheme.surface,
                 ),
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
