@@ -17,6 +17,7 @@ enum DomainExceptionType {
   // ignore: avoid_escaping_inner_quotes
   notMatchQuery('Search query doesn\'t match previous.'),
   dioException('Dio Exceptions.'),
+  overRateLimits('403|429: over rate limits.'),
   notModified('304: Not modified.'),
   validationFailed('422: Validation failed, or the endpoint has been spammed.'),
   apiServerError('503: Service unavailable.'),

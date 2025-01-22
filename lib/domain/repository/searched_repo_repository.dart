@@ -116,6 +116,17 @@ class SearchedRepoRepository {
         cause: e,
       );
       if (e is DioException) {
+        if (e.response?.statusCode == 403 || e.response?.statusCode == 429) {
+          // Rate limits for the REST API
+          // https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28#exceeding-the-rate-limit
+          // プライマリ レート制限を超えると、403 または 429 が返されます。
+          // 指定された時間が経過するまで、リクエストを再試行しないでください。
+          throw DomainException(
+            '',
+            type: DomainExceptionType.overRateLimits,
+            option: e,
+          );
+        }
         throw DomainException(
           '',
           type: DomainExceptionType.dioException,
@@ -130,7 +141,7 @@ class SearchedRepoRepository {
 
   /// HTTP Status Code error check
   void _checkError(int? code) {
-    if (code != null) {
+    if (code == null) {
       return;
     }
 

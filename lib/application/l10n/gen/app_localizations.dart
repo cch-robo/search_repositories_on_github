@@ -152,6 +152,12 @@ abstract class AppLocalizations {
   /// **'ネットワーク通信に問題がでました。'**
   String get errorMessageDioException;
 
+  /// No description provided for @errorMessageOverRateLimits.
+  ///
+  /// In ja, this message translates to:
+  /// **'検索レート制限を越えました、しばらく利用を控えてください。'**
+  String get errorMessageOverRateLimits;
+
   /// No description provided for @errorMessageUnknownException.
   ///
   /// In ja, this message translates to:
