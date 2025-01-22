@@ -38,6 +38,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'A network communication problem occurred.';
 
   @override
+  String get errorMessageOverRateLimits =>
+      'You have exceeded search rate limit.\nPlease refrain from using for a while.';
+
+  @override
   String get errorMessageUnknownException => 'An unexpected problem occurred.';
 
   @override
