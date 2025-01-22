@@ -10,6 +10,7 @@ import '../error/use_case_error_dialog.dart';
 /// ユースケース・レイヤレベルの検索情報を取得します。
 class SearchRepoService {
   SearchRepoService(this._repository);
+
   final SearchedRepoRepository _repository;
   final UseCaseErrorHDialog _errorDialog = UseCaseErrorHDialog();
 
@@ -150,12 +151,10 @@ class SearchRepoService {
             l10n(context).errorMessageUnknownException,
           _ => l10n(context).errorMessageApiProblem,
         };
-        unawaited(
-          _errorDialog.showErrorAlertDialog(
-            context: context,
-            title: l10n(context).errorDialogTitle,
-            message: message,
-          ),
+        await _errorDialog.showErrorAlertDialog(
+          context: context,
+          title: l10n(context).errorDialogTitle,
+          message: message,
         );
       }
     }
