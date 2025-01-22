@@ -44,7 +44,7 @@ class SearchPageState extends State<SearchPage> {
     // 狭小画面デバイス及び、ソフトキーボード高が大きいものがあるため、
     // 画面方向を（縦方向のみ）に指定
     unawaited(
-      SystemChrome.setPreferredOrientations([
+      SystemChrome.setPreferredOrientations(<DeviceOrientation>[
         DeviceOrientation.portraitUp,
       ]),
     );
@@ -55,7 +55,7 @@ class SearchPageState extends State<SearchPage> {
   void dispose() {
     // 画面方向指定解除（全方向指定）
     unawaited(
-      SystemChrome.setPreferredOrientations([
+      SystemChrome.setPreferredOrientations(<DeviceOrientation>[
         DeviceOrientation.portraitUp,
         DeviceOrientation.portraitDown,
         DeviceOrientation.landscapeLeft,
