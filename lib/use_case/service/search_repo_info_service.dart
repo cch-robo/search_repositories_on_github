@@ -144,18 +144,18 @@ class SearchRepoService {
             l10n(context).errorMessageEmptyQuery,
           DomainExceptionType.tooLongQuery =>
             l10n(context).errorMessageTooLongQuery,
+          DomainExceptionType.overRateLimits =>
+            l10n(context).errorMessageOverRateLimits,
           DomainExceptionType.dioException =>
             l10n(context).errorMessageDioException,
           DomainExceptionType.unknownException =>
             l10n(context).errorMessageUnknownException,
           _ => l10n(context).errorMessageApiProblem,
         };
-        unawaited(
-          _errorDialog.showErrorAlertDialog(
-            context: context,
-            title: l10n(context).errorDialogTitle,
-            message: message,
-          ),
+        await _errorDialog.showErrorAlertDialog(
+          context: context,
+          title: l10n(context).errorDialogTitle,
+          message: message,
         );
       }
     }

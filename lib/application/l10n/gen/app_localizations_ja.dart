@@ -36,6 +36,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get errorMessageDioException => 'ネットワーク通信に問題がでました。';
 
   @override
+  String get errorMessageOverRateLimits => '検索レート制限を越えました、しばらく利用を控えてください。';
+
+  @override
   String get errorMessageUnknownException => '想定外の問題が発生しました。';
 
   @override

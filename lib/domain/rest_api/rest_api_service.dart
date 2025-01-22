@@ -39,12 +39,14 @@ class RestApiService {
       // タイムアウト
       if (exception.type == DioExceptionType.connectionTimeout ||
           exception.type == DioExceptionType.sendTimeout ||
-          exception.type == DioExceptionType.receiveTimeout) {}
-      throw DomainException(
-        '',
-        type: DomainExceptionType.dioException,
-        cause: exception,
-      );
+          exception.type == DioExceptionType.receiveTimeout) {
+        throw DomainException(
+          '',
+          type: DomainExceptionType.dioException,
+          cause: exception,
+        );
+      }
+      rethrow;
     }
   }
 

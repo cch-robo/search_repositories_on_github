@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:search_repositories_on_github/application/publications.dart';
 import 'package:search_repositories_on_github/foundation/publications.dart';
@@ -37,7 +40,29 @@ class SearchPageState extends State<SearchPage> {
   }
 
   @override
+  void didChangeDependencies() {
+    // 狭小画面デバイス及び、ソフトキーボード高が大きいものがあるため、
+    // 画面方向を（縦方向のみ）に指定
+    unawaited(
+      SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+        DeviceOrientation.portraitUp,
+      ]),
+    );
+    super.didChangeDependencies();
+  }
+
+  @override
   void dispose() {
+    // 画面方向指定解除（全方向指定）
+    unawaited(
+      SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+      ]),
+    );
+
     _readmeController.dispose();
     _descriptionController.dispose();
     _repoNameController.dispose();

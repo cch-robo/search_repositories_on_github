@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:search_repositories_on_github/application/publications.dart';
@@ -13,10 +16,25 @@ class ResultsPage extends HookConsumerWidget {
   const ResultsPage({super.key});
 
   Dispose? _initState() {
+    // 画面方向指定解除（全方向指定）
+    unawaited(
+      SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+      ]),
+    );
     return _dispose;
   }
 
   Dispose? _dispose() {
+    // 画面方向を（縦方向のみ）に指定
+    unawaited(
+      SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+        DeviceOrientation.portraitUp,
+      ]),
+    );
     return null;
   }
 
@@ -40,6 +58,7 @@ class ResultsPage extends HookConsumerWidget {
               slivers: <Widget>[
                 SliverAppBar(
                   title: Text(l10n(context).resultsPageTitle),
+                  pinned: true,
                 ),
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
