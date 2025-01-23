@@ -22,7 +22,7 @@ class SearchRepoService {
   ///
   /// 返却値
   /// - repo: リポジトリ情報（検索エラーや有効な index でない場合は nullが返る）
-  /// - left: 未取得件数 （検索エラーや有効な index でない場合は 0以下が返る）
+  /// - left: 未取得件数 （検索エラーや有効な index でない場合は 0が返る）
   ({int left, RepoModel? repo}) getRepoInfo(int index) {
     if (_searchInfo == null) {
       return (repo: null, left: 0);
@@ -31,13 +31,14 @@ class SearchRepoService {
     final SearchInfo info = _searchInfo!;
     final int loaded = info.repositories.length;
     final int left = info.totalCount - loaded;
+
     if (index < loaded) {
       return (repo: info.repositories[index], left: left);
     }
     if (index < info.totalCount) {
       return (repo: null, left: left);
     }
-    return (repo: null, left: info.totalCount - index);
+    return (repo: null, left: 0);
   }
 
   /// クエリで検索を開始する。
