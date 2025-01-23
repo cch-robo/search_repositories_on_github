@@ -240,6 +240,11 @@ _プロジェクト内のディレクトリ名は、上記の概念を反映し�
   _狭小画面デバイスで、検索条件と検索ボタンとソフトキーボードの表示領域がない場合に対応しています。_
   [https://github.com/cch-robo/search_repositories_on_github/pull/68](https://github.com/cch-robo/search_repositories_on_github/pull/68)
 
+- Android プラットフォーム固有問題に対処しています。  
+  _Android では、追加検索時にスクロール位置ロストするため下スクロール操作が必要であった。_  
+  _iOS では不要な下スクロール操作に対処するためスクロール位置を保管して、補正するようにしています。_
+  [https://github.com/cch-robo/search_repositories_on_github/pull/73](https://github.com/cch-robo/search_repositories_on_github/pull/73)  
+
 
 ## アプリ画像
 ![Demo_SearchPage](docs/images/Demo_SearchPage.png)
