@@ -13,7 +13,9 @@ import '../../ui_components/repository_card.dart';
 import '../view_model/results_page_view_model.dart';
 
 class ResultsPage extends HookConsumerWidget {
-  const ResultsPage({super.key});
+  ResultsPage({super.key});
+
+  final ScrollController _scrollController = ScrollController();
 
   Dispose? _initState() {
     // 画面方向指定解除（全方向指定）
@@ -35,13 +37,14 @@ class ResultsPage extends HookConsumerWidget {
         DeviceOrientation.portraitUp,
       ]),
     );
+    _scrollController.dispose();
     return null;
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     debugLog('debug - ResultsPage - build');
-    useEffect(_initState, <Object?>[]);
+    useEffect(_initState, <Object?>[_scrollController]);
 
     final ResultsPageViewModel viewModel =
         ref.read(resultsPageViewModelProvider.notifier);
@@ -55,6 +58,7 @@ class ResultsPage extends HookConsumerWidget {
             left: true,
             right: true,
             child: CustomScrollView(
+              controller: _scrollController,
               slivers: <Widget>[
                 SliverAppBar(
                   title: Text(l10n(context).resultsPageTitle),
@@ -63,13 +67,13 @@ class ResultsPage extends HookConsumerWidget {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                      final RepoModel? repo =
-                          viewModel.getRepoInfo(context, index);
+                      final RepoModel? repo = viewModel.getRepoInfo(
+                          context, index, _scrollController);
                       return repo == null
                           ? null
                           : RepositoryCard(
                               index: index,
-                              name: repo.name,
+                              name: '$index:${repo.name}',
                               onPressed: (BuildContext context, int index) {
                                 // カードがタップされたら、DetailPage で詳細を表示する。
                                 DetailPageRoute(index: index).go(context);
