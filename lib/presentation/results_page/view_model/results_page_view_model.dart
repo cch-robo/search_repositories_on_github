@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 // ignore: depend_on_referenced_packages
 import 'package:async/async.dart';
@@ -33,16 +34,44 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
   /// 検索完了フラグ
   bool get isComplete => state.condition == Condition.complete;
 
+  /// Android スクロール位置補正用（アイテム高）
+  double _itemHeight = 0;
+
+  /// Android スクロール位置補正用（スクロール位置）
+  double _maxOffset = 0;
+
   /// index 番号指定のリポジトリ情報を取得する。
-  RepoModel? getRepoInfo(BuildContext context, int index) {
+  RepoModel? getRepoInfo(
+    BuildContext context,
+    int index,
+    ScrollController scrollController,
+  ) {
     final ({RepoModel? repo, int left}) res =
         searchRepoService.getRepoInfo(index);
+
+    final double offset =
+        res.repo != null && scrollController.position.hasPixels
+            ? scrollController.position.pixels
+            : 0;
+
+    _maxOffset = offset == 0 ? _maxOffset : offset;
+    _itemHeight = offset == 0 ? (_maxOffset / index - 1) : (_maxOffset / index);
+
     // データ未取得でかつ、取得可能であれば次ページデータを取得する。
     if (res.repo == null && res.left > 0) {
       // 次ページの検索を実行
       Future<void>.delayed(const Duration(milliseconds: 500), () {
-        // ignore: discarded_futures
-        cacheStrategy.fetch(() => searchNext(context));
+        unawaited(
+          cacheStrategy.fetch(
+            () async {
+              await searchNext(context);
+              if (Platform.isAndroid) {
+                // Android は、データロード後にスクロール位置をロストするため補正を入れる
+                scrollController.jumpTo(_maxOffset + _itemHeight * 5);
+              }
+            },
+          ),
+        );
       });
     }
     return res.repo;

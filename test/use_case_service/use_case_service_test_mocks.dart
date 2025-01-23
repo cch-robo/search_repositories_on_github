@@ -8,6 +8,7 @@ import 'package:search_repositories_on_github/use_case/service/search_repo_info_
 
 class MockRestApiService extends RestApiService {
   MockRestApiService(this.page1, this.page2, this.page3);
+
   final String page1;
   final String page2;
   final String page3;
