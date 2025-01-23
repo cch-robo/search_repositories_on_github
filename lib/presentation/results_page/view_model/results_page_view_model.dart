@@ -49,11 +49,6 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
     final ({RepoModel? repo, int left}) res =
         searchRepoService.getRepoInfo(index);
 
-    final double maxScroll =
-        res.repo != null && scrollController.position.hasContentDimensions
-            ? scrollController.position.maxScrollExtent
-            : 0;
-
     final double offset =
         res.repo != null && scrollController.position.hasPixels
             ? scrollController.position.pixels
