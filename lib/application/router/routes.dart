@@ -29,7 +29,7 @@ class SearchPageRoute extends GoRouteData {
 class ResultsPageRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const ResultsPage();
+    return ResultsPage();
   }
 }
 
