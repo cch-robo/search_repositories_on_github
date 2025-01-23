@@ -68,12 +68,15 @@ class ResultsPage extends HookConsumerWidget {
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
                       final RepoModel? repo = viewModel.getRepoInfo(
-                          context, index, _scrollController,);
+                        context,
+                        index,
+                        _scrollController,
+                      );
                       return repo == null
                           ? null
                           : RepositoryCard(
                               index: index,
-                              name: '$index:${repo.name}',
+                              name: repo.name,
                               onPressed: (BuildContext context, int index) {
                                 // カードがタップされたら、DetailPage で詳細を表示する。
                                 DetailPageRoute(index: index).go(context);
