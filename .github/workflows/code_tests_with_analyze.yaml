@@ -1,0 +1,27 @@
+name: do test and lint analyze on the source code.
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - develop
+jobs:
+  test:
+    name: Select the container server to use
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2.18.0
+        with:
+          channel: stable
+          flutter-version-file: pubspec.yaml
+          cache: true
+      - name: flutter version
+        run: flutter --version
+      - name: Install packages
+        run: make get
+      - name: Linter
+        run: make lint-analyze
+      - name: Unit test
+        run: make unit-test
