@@ -10,6 +10,7 @@ import 'package:search_repositories_on_github/use_case/publications.dart';
 
 import '../../../domain/publications.dart';
 import '../../shared_state_on_pages/state/search_condition_state.dart';
+import '../../ui_components/error_dialog.dart';
 
 part 'results_page_view_model.g.dart';
 
@@ -33,6 +34,9 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
 
   /// 検索完了フラグ
   bool get isComplete => state.condition == Condition.complete;
+
+  /// 検索エラーフラグ
+  bool get hasError => isError;
 
   /// Android スクロール位置補正用（アイテム高）
   double _itemHeight = 0;
@@ -69,6 +73,23 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
                 // Android は、データロード後にスクロール位置をロストするため補正を入れる
                 scrollController.jumpTo(_maxOffset + _itemHeight * 5);
               }
+
+              if (isError) {
+                // 検索キューをフラッシュする。
+                cacheStrategy.invalidate();
+                debugLog('getRepoInfo  error occur.');
+
+                // ユーザへのエラー確認チェック要請
+                Future<void>.delayed(const Duration(milliseconds: 500), () {
+                  unawaited(
+                    cacheStrategy.fetch(
+                      () async {
+                        await errorConfirmed(context);
+                      },
+                    ),
+                  );
+                });
+              }
             },
           ),
         );
@@ -95,6 +116,24 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
       // 検索コンディションをエラーに更新
       state = state.copyWith(condition: Condition.error);
       debugLog('searchNext  error\n');
+    }
+  }
+
+  Future<void> errorConfirmed(BuildContext context) async {
+    debugLog('errorConfirmed - condition=${state.condition.name}');
+
+    if (hasError) {
+      final ErrorInfo errorInfo = searchRepoService.errorInfo!;
+      final PresentationErrorDialog errorDialog = PresentationErrorDialog();
+      await errorDialog.showErrorAlertDialog(
+        context: context,
+        title: errorInfo.title,
+        message: errorInfo.message,
+      );
+
+      // ユーザがエラーを確認したので検索コンディションを更新する。
+      state = state.copyWith(condition: Condition.before);
+      debugLog('errorConfirmed  before\n');
     }
   }
 }
