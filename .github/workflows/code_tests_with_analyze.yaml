@@ -3,9 +3,9 @@ on:
   # 手動動作確認用
   workflow_dispatch:
 
-  pull_request:
-    branches:
-      - develop
+#  pull_request:
+#    branches:
+#      - develop
 
 jobs:
   test:
