@@ -118,10 +118,13 @@ GitHub テンプレートをベースに独自の Pull Request テンプレー�
   [https://github.com/cch-robo/search_repositories_on_github/pull/47](https://github.com/cch-robo/search_repositories_on_github/pull/47)
 
 ### GitHub Actions 設定
-プルリクエストでの lintチェックやテスト実行などのため利用を想定していましたが、  
-開発を優先したため、残念ながら設定時間が足りませんでした。  
+最低限のタスクとして、プルリクエストでの lintチェックやテスト実行を追加しました。  
+以下のプルリクエストを御参照ください。
 
-_利用できるのであれば、公開されているテンプレートを使います。_
+- GitHub Actons pull request チェックを有効にします。 [https://github.com/cch-robo/search_repositories_on_github/pull/82](https://github.com/cch-robo/search_repositories_on_github/pull/82)  
+  [https://github.com/cch-robo/search_repositories_on_github/pull/80](https://github.com/cch-robo/search_repositories_on_github/pull/80) 
+  [https://github.com/cch-robo/search_repositories_on_github/pull/81](https://github.com/cch-robo/search_repositories_on_github/pull/81) 
+  [https://github.com/cch-robo/search_repositories_on_github/pull/82](https://github.com/cch-robo/search_repositories_on_github/pull/82)
 
 
 ## アプリの特徴について
@@ -231,7 +234,8 @@ _プロジェクト内のディレクトリ名は、上記の概念を反映し�
 - エラーダイアログ表示中は、検索サービスを停止しています。  
   _エラーダイアログが複数件表示されません。_
   [https://github.com/cch-robo/search_repositories_on_github/pull/64](https://github.com/cch-robo/search_repositories_on_github/pull/64) 
-  [https://github.com/cch-robo/search_repositories_on_github/pull/76](https://github.com/cch-robo/search_repositories_on_github/pull/76)  
+  [https://github.com/cch-robo/search_repositories_on_github/pull/76](https://github.com/cch-robo/search_repositories_on_github/pull/76) 
+  [https://github.com/cch-robo/search_repositories_on_github/pull/79](https://github.com/cch-robo/search_repositories_on_github/pull/79)
 
 - ResultsPageの AppBarを固定表示にしています。  
   _AppBarの固定表示により、SearchPageに戻りやすくなっています。_

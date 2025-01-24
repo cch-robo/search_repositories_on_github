@@ -29,6 +29,9 @@ class SearchRepoService {
   /// - repo: リポジトリ情報（検索エラーや有効な index でない場合は nullが返る）
   /// - left: 未取得件数 （検索エラーや有効な index でない場合は 0が返る）
   ({int left, RepoModel? repo}) getRepoInfo(int index) {
+    // エラー情報をクリア
+    _errorInfo = null;
+
     if (_searchInfo == null) {
       return (repo: null, left: 0);
     }
@@ -59,6 +62,9 @@ class SearchRepoService {
   }) async {
     // 検索情報を初期化
     _searchInfo = null;
+
+    // エラー情報をクリア
+    _errorInfo = null;
 
     final List<QueryItem> items = <QueryItem>[];
     _addQueryItem(items, InFilter.readme, readme);
@@ -122,6 +128,9 @@ class SearchRepoService {
   Future<SearchInfo?> addNextRepositories({
     required BuildContext context,
   }) async {
+    // エラー情報をクリア
+    _errorInfo = null;
+
     // 次ページ検索条件チェック
     if (searchInfo == null ||
         searchInfo!.totalCount == searchInfo!.repositories.length) {
@@ -159,6 +168,7 @@ class SearchRepoService {
             l10n(context).errorMessageUnknownException,
           _ => l10n(context).errorMessageApiProblem,
         };
+        // エラー情報を設定（ドメイン知識が漏出しないようメッセージのみ提供）
         _errorInfo = ErrorInfo(title: title, message: message);
       }
     }
