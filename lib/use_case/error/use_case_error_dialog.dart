@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// ユースケースレベルのエラーダイアログ表示サービス
-class UseCaseErrorHDialog {
+class UseCaseErrorDialog {
   Future<void> showErrorAlertDialog({
     required BuildContext context,
     required String title,
