@@ -145,6 +145,7 @@ class SearchRepoService {
       );
 
       if (context.mounted) {
+        final String title = l10n(context).errorDialogTitle;
         final String message = switch (exp.type) {
           DomainExceptionType.emptyQuery =>
             l10n(context).errorMessageEmptyQuery,
@@ -158,11 +159,7 @@ class SearchRepoService {
             l10n(context).errorMessageUnknownException,
           _ => l10n(context).errorMessageApiProblem,
         };
-        await _errorDialog.showErrorAlertDialog(
-          context: context,
-          title: l10n(context).errorDialogTitle,
-          message: message,
-        );
+        _errorInfo = ErrorInfo(title: title, message: message);
       }
     }
     return null;
