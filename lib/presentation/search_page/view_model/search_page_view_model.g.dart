@@ -7,7 +7,7 @@ part of 'search_page_view_model.dart';
 // **************************************************************************
 
 String _$searchPageViewModelHash() =>
-    r'480a8b64e23c0c04cb987016e31abe2d9e57c00d';
+    r'c2a3e9f2d2c782c1e62948ce5a88e0ba65204321';
 
 /// （riverpod での notifier） SearchPage ViewModel
 ///
