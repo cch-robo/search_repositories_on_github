@@ -24,8 +24,8 @@ jobs:
       - name: flutter version
         run: flutter --version
       - name: Install packages
-        run: make get
+        run: flutter pub get
       - name: Linter
-        run: make lint-analyze
+        run: flutter analyze
       - name: Unit test
-        run: make unit-test
+        run: flutter test
