@@ -11,12 +11,17 @@ import '../error/use_case_error_dialog.dart';
 class SearchRepoService {
   SearchRepoService(this._repository);
   final SearchedRepoRepository _repository;
-  final UseCaseErrorHDialog _errorDialog = UseCaseErrorHDialog();
+  final UseCaseErrorDialog _errorDialog = UseCaseErrorDialog();
 
   SearchInfo? _searchInfo;
 
   /// ユースケースレベルの検索情報
   SearchInfo? get searchInfo => _searchInfo;
+
+  ErrorInfo? _errorInfo;
+
+  /// ユースケースレベルのエラー情報
+  ErrorInfo? get errorInfo => _errorInfo;
 
   /// index 番号で示されたリポジトリ情報を取得します。
   ///
@@ -186,4 +191,18 @@ class SearchInfo {
 
   /// 取得済みの検索リポジトリのリスト（可変）
   final List<RepoModel> repositories;
+}
+
+/// ユースケースレベルのエラー情報モデル
+class ErrorInfo {
+  ErrorInfo({
+    required this.title,
+    required this.message,
+  });
+
+  /// エラータイトル
+  final String title;
+
+  /// エラーメッセージ
+  final String message;
 }
