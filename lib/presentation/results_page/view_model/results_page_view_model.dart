@@ -38,9 +38,6 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
   /// 検索エラーフラグ
   bool get hasError => isError;
 
-  /// Android スクロール位置補正用（アイテム高）
-  double _itemHeight = 0;
-
   /// Android スクロール位置補正用（スクロール位置）
   double _maxOffset = 0;
 
@@ -59,7 +56,6 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
             : 0;
 
     _maxOffset = offset == 0 ? _maxOffset : offset;
-    _itemHeight = offset == 0 ? (_maxOffset / index - 1) : (_maxOffset / index);
 
     // データ未取得でかつ、取得可能であれば次ページデータを取得する。
     if (res.repo == null && res.left > 0) {
@@ -71,7 +67,9 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
               await searchNext(context);
               if (Platform.isAndroid) {
                 // Android は、データロード後にスクロール位置をロストするため補正を入れる
-                scrollController.jumpTo(_maxOffset + _itemHeight * 5);
+                scrollController.jumpTo(
+                  _maxOffset + ((_maxOffset / (index - 5 * 2)) * 5),
+                );
               }
 
               if (isError) {
@@ -84,6 +82,12 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
                   unawaited(
                     cacheStrategy.fetch(
                       () async {
+                        if (Platform.isAndroid) {
+                          // Android は、スクロール位置をロストしているため補正を入れる
+                          scrollController.jumpTo(
+                            _maxOffset - ((_maxOffset / (index - 5 * 2)) * 2),
+                          );
+                        }
                         await errorConfirmed(context);
                       },
                     ),
