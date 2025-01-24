@@ -23,6 +23,8 @@ jobs:
           cache: true
       - name: flutter version
         run: flutter --version
+      # Makefileは使えますが、fvm 設定をしていないので
+      # make コマンドなく、flutter コマンドを使います。
       - name: Install packages
         run: flutter pub get
       - name: Linter
