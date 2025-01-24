@@ -22,6 +22,9 @@ clean:
 cache-clean:
 	fvm flutter pub cache clean
 
+lint-check:
+	fvm flutter analyze
+
 get:
 	fvm flutter pub get
 
