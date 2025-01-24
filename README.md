@@ -230,7 +230,8 @@ _プロジェクト内のディレクトリ名は、上記の概念を反映し�
 ## その他の対応
 - エラーダイアログ表示中は、検索サービスを停止しています。  
   _エラーダイアログが複数件表示されません。_
-  [https://github.com/cch-robo/search_repositories_on_github/pull/64](https://github.com/cch-robo/search_repositories_on_github/pull/64)
+  [https://github.com/cch-robo/search_repositories_on_github/pull/64](https://github.com/cch-robo/search_repositories_on_github/pull/64) 
+  [https://github.com/cch-robo/search_repositories_on_github/pull/76](https://github.com/cch-robo/search_repositories_on_github/pull/76)  
 
 - ResultsPageの AppBarを固定表示にしています。  
   _AppBarの固定表示により、SearchPageに戻りやすくなっています。_
