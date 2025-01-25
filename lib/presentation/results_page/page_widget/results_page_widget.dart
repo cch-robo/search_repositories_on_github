@@ -13,9 +13,7 @@ import '../../ui_components/repository_card.dart';
 import '../view_model/results_page_view_model.dart';
 
 class ResultsPage extends HookConsumerWidget {
-  ResultsPage({super.key});
-
-  final ScrollController _scrollController = ScrollController();
+  const ResultsPage({super.key});
 
   Dispose? _initState() {
     // 画面方向指定解除（全方向指定）
@@ -37,14 +35,14 @@ class ResultsPage extends HookConsumerWidget {
         DeviceOrientation.portraitUp,
       ]),
     );
-    _scrollController.dispose();
     return null;
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     debugLog('debug - ResultsPage - build');
-    useEffect(_initState, <Object?>[_scrollController]);
+    final ScrollController scrollController = useScrollController();
+    useEffect(_initState, <Object?>[scrollController]);
 
     final ResultsPageViewModel viewModel =
         ref.read(resultsPageViewModelProvider.notifier);
@@ -58,7 +56,7 @@ class ResultsPage extends HookConsumerWidget {
             left: true,
             right: true,
             child: CustomScrollView(
-              controller: _scrollController,
+              controller: scrollController,
               slivers: <Widget>[
                 SliverAppBar(
                   title: Text(l10n(context).resultsPageTitle),
@@ -70,7 +68,7 @@ class ResultsPage extends HookConsumerWidget {
                       final RepoModel? repo = viewModel.getRepoInfo(
                         context,
                         index,
-                        _scrollController,
+                        scrollController,
                       );
                       return repo == null
                           ? null
