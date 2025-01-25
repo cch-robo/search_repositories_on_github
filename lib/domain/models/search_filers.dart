@@ -3,13 +3,21 @@ class Query {
   Query(this.params);
   final List<QueryItem> params;
 
+  String toParamStr() {
+    final StringBuffer sb = StringBuffer();
+    for (final QueryItem item in params) {
+      sb.write(item.paramStr);
+    }
+    return sb.toString();
+  }
+
   String toQueryStr() {
     final StringBuffer sb = StringBuffer();
     for (final QueryItem item in params) {
       if (sb.isNotEmpty) {
         sb.write(' ');
       }
-      sb.write(item.label);
+      sb.write(item.queryStr);
     }
     return sb.toString();
   }
@@ -17,8 +25,9 @@ class Query {
 
 /// Queryアイテムを表すバリュークラス
 class QueryItem {
-  QueryItem(this.label);
-  final String label;
+  QueryItem(this.paramStr, this.queryStr);
+  final String paramStr;
+  final String queryStr;
 }
 
 /// （検索条件フィルタ）キーワードが条件に含まれているリポジトリで絞り込みます。
@@ -35,16 +44,17 @@ enum InFilter {
   /// in:readme キーワードがREADME ファイル内に含まれている。
   readme('in:readme');
 
-  const InFilter(this.searchType);
+  const InFilter(this.qualifier);
 
-  final String searchType;
+  final String qualifier;
 
   QueryItem toQueryItem(String keyword) {
-    return QueryItem('"$keyword" $searchType');
+    final String param = keyword.replaceAll('"', ' ');
+    return QueryItem(param, '"$param" $qualifier');
   }
 }
 
-//FIXME ロジック考慮中
+//FIXME ロジック考慮中 (全パターン網羅不全のため保留)
 /// （検索条件フィルタ）条件が範囲内のリポジトリで絞り込みます。
 enum RangeFilter {
   size('size'),
@@ -53,18 +63,25 @@ enum RangeFilter {
   stars('start'),
   topics('topics');
 
-  const RangeFilter(this.label);
-  final String label;
-  QueryItem toQueryItem({required Range range, required int value}) =>
-      QueryItem('$label:"$name"');
+  const RangeFilter(this.qualifier);
+  final String qualifier;
+  QueryItem toQueryItem({required Range range, required int value}) {
+    final String param = value.toString();
+    return QueryItem(param, '$qualifier:${range.operator}$param');
+  }
 }
 
-//FIXME ロジック考慮中
+//FIXME ロジック考慮中 (全パターン網羅不全のため保留)
 enum Range {
-  equals(),
-  large,
-  small,
-  range;
+  // range(':%..%'),
+  equals(''),
+  large('>'),
+  small('<'),
+  graterEquals('>='),
+  smallerEquals('<=');
+
+  const Range(this.operator);
+  final String operator;
 }
 
 /// （検索条件フィルタ）キーワードが条件に含まれているリポジトリで絞り込みます。
@@ -75,9 +92,12 @@ enum SingleMachFilter {
   /// キーワードが組織名に含まれている。
   org('org');
 
-  const SingleMachFilter(this.label);
-  final String label;
-  QueryItem toQueryItem({required String name}) => QueryItem('$label:"$name"');
+  const SingleMachFilter(this.qualifier);
+  final String qualifier;
+  QueryItem toQueryItem({required String name}) {
+    final String param = name.replaceAll('"', ' ');
+    return QueryItem(param, '$qualifier:"$param"');
+  }
 }
 
 /// （検索条件フィルタ）キーワードが条件に含まれているリポジトリで絞り込みます。
@@ -85,10 +105,13 @@ enum DoubleMachFilter {
   /// オーナー名やリポジトリ名で絞り込みます。
   repo('repo');
 
-  const DoubleMachFilter(this.label);
-  final String label;
-  QueryItem toQueryItem({required String userName, required String repoName}) =>
-      QueryItem('$label:"$userName"/"$repoName"');
+  const DoubleMachFilter(this.qualifier);
+  final String qualifier;
+  QueryItem toQueryItem({required String userName, required String repoName}) {
+    final String param1 = userName.replaceAll('"', ' ');
+    final String param2 = repoName.replaceAll('"', ' ');
+    return QueryItem('$param1 $param2', '$qualifier:"$param1"/"$param2"');
+  }
 }
 
 /// （検索条件フィルタ）条件を満たすリポジトリで絞り込みます。
@@ -102,9 +125,11 @@ enum BoolFilter {
   /// リポジトリがアーカイブされているか否かで絞込みます。
   archived('archived');
 
-  const BoolFilter(this.label);
-  final String label;
-  QueryItem toQueryItem({required bool flag}) => QueryItem('$label:$flag');
+  const BoolFilter(this.qualifier);
+  final String qualifier;
+  QueryItem toQueryItem({required bool flag}) {
+    return QueryItem('$flag', '$qualifier:$flag');
+  }
 }
 
 /// （検索条件フィルタ）条件を満たすリポジトリで絞り込みます。
@@ -115,7 +140,7 @@ enum SingleFilter {
   /// リポジトリに Founding ファイルがあるか否かで絞り込みます。
   fundingFile('has:funding-file');
 
-  const SingleFilter(this.label);
-  final String label;
-  QueryItem toQueryItem() => QueryItem(label);
+  const SingleFilter(this.qualifier);
+  final String qualifier;
+  QueryItem toQueryItem() => QueryItem('', qualifier);
 }

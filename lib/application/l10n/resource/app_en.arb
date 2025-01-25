@@ -8,7 +8,7 @@
   "errorButtonCancel": "Cancel",
 
   "errorMessageEmptyQuery": "There is no search query.",
-  "errorMessageTooLongQuery": "Search queries cannot exceed 256 characters.",
+  "errorMessageTooLongQuery": "Search parameters are too long, please limit them to less than 256 characters total.",
   "errorMessageDioException": "A network communication problem occurred.",
   "errorMessageOverRateLimits": "You have exceeded search rate limit.\nPlease refrain from using for a while.",
   "errorMessageUnknownException": "An unexpected problem occurred.",
