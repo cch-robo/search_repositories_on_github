@@ -19,6 +19,11 @@ class SearchedRepoRepository {
   /// 検索ページングのページカウント数
   static const int parPage = 20;
 
+  /// クエリパラメータ最大長
+  ///
+  /// _運用上の最大長は、調査の結果 256文字より小さかった。_
+  static const int maxQueryParameterSize = 245;
+
   /// リポジトリ検索開始
   ///
   /// ある検索条件のクエリをベースにした検索初回（第1ページ）取得を表す。
@@ -28,9 +33,13 @@ class SearchedRepoRepository {
     try {
       // 検索情報を破棄
       _searchRepoInfo = null;
-      final String queryString = query.toString();
-      if (queryString.length >= 256) {
-        // 最大長 256文字
+
+      // クエリパラメータの qualifier を除くパラメータ部の最大長チェック
+      final String paramString = query.toParamStr();
+      debugLog('searchRepositories'
+          ' - paramString[${paramString.length}]=$paramString');
+
+      if (paramString.length > maxQueryParameterSize) {
         throw DomainException('', type: DomainExceptionType.tooLongQuery);
       }
 
