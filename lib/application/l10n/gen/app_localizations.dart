@@ -143,7 +143,7 @@ abstract class AppLocalizations {
   /// No description provided for @errorMessageTooLongQuery.
   ///
   /// In ja, this message translates to:
-  /// **'検索クエリは、256文字までです。'**
+  /// **'検索条件が長すぎます、合計で256文字未満にしてください。'**
   String get errorMessageTooLongQuery;
 
   /// No description provided for @errorMessageDioException.
