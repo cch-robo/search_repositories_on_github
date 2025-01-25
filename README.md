@@ -248,12 +248,14 @@ _プロジェクト内のディレクトリ名は、上記の概念を反映し�
 - Android プラットフォーム固有問題に対処しています。  
   _Android では、追加検索時にスクロール位置ロストするため下スクロール操作が必要であった。_  
   _iOS では不要な下スクロール操作に対処するためスクロール位置を保管して、補正するようにしています。_
-  [https://github.com/cch-robo/search_repositories_on_github/pull/73](https://github.com/cch-robo/search_repositories_on_github/pull/73)  
+  [https://github.com/cch-robo/search_repositories_on_github/pull/73](https://github.com/cch-robo/search_repositories_on_github/pull/73) 
+  [https://github.com/cch-robo/search_repositories_on_github/pull/90](https://github.com/cch-robo/search_repositories_on_github/pull/90)
 
 - 実態調査から獲得したドメイン知識をクエリパラメータのバリデーションに反映しています。  
   _クエリパラメータ最大長を越えた検索を行うと 422 エラーが発生するので、_  
   _ユーザーが検索サービス最大長を超えた検索条件パラメータを入力していれば警告を表示します。_
-  [https://github.com/cch-robo/search_repositories_on_github/pull/86](https://github.com/cch-robo/search_repositories_on_github/pull/86)
+  [https://github.com/cch-robo/search_repositories_on_github/pull/86](https://github.com/cch-robo/search_repositories_on_github/pull/86) 
+  [https://github.com/cch-robo/search_repositories_on_github/pull/88](https://github.com/cch-robo/search_repositories_on_github/pull/88)
 
 
 ## アプリ画像
