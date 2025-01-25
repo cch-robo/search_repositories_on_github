@@ -50,6 +50,11 @@ class ResultsPageViewModel extends _$ResultsPageViewModel {
     final ({RepoModel? repo, int left}) res =
         searchRepoService.getRepoInfo(index);
 
+    // エラー確認待機時であれば、処理を無視させます。
+    if (hasError) {
+      return res.repo;
+    }
+
     final double offset =
         res.repo != null && scrollController.position.hasPixels
             ? scrollController.position.pixels
