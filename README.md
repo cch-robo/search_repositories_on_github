@@ -255,7 +255,8 @@ _プロジェクト内のディレクトリ名は、上記の概念を反映し�
   _クエリパラメータ最大長を越えた検索を行うと 422 エラーが発生するので、_  
   _ユーザーが検索サービス最大長を超えた検索条件パラメータを入力していれば警告を表示します。_
   [https://github.com/cch-robo/search_repositories_on_github/pull/86](https://github.com/cch-robo/search_repositories_on_github/pull/86) 
-  [https://github.com/cch-robo/search_repositories_on_github/pull/88](https://github.com/cch-robo/search_repositories_on_github/pull/88)
+  [https://github.com/cch-robo/search_repositories_on_github/pull/88](https://github.com/cch-robo/search_repositories_on_github/pull/88) 
+  [https://github.com/cch-robo/search_repositories_on_github/pull/93](https://github.com/cch-robo/search_repositories_on_github/pull/93)
 
 
 ## アプリ画像
