@@ -30,7 +30,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get errorMessageEmptyQuery => '検索クエリがありません。';
 
   @override
-  String get errorMessageTooLongQuery => '検索クエリは、256文字までです。';
+  String get errorMessageTooLongQuery => '検索条件が長すぎます、合計で256文字未満にしてください。';
 
   @override
   String get errorMessageDioException => 'ネットワーク通信に問題がでました。';

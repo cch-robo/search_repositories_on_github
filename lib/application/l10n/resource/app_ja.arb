@@ -11,7 +11,7 @@
   "errorButtonCancel": "Cancel",
 
   "errorMessageEmptyQuery": "検索クエリがありません。",
-  "errorMessageTooLongQuery": "検索クエリは、256文字までです。",
+  "errorMessageTooLongQuery": "検索条件が長すぎます、合計で256文字未満にしてください。",
   "errorMessageDioException": "ネットワーク通信に問題がでました。",
   "errorMessageOverRateLimits": "検索レート制限を越えました、しばらく利用を控えてください。",
   "errorMessageUnknownException": "想定外の問題が発生しました。",

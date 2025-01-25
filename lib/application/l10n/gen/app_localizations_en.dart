@@ -31,7 +31,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorMessageTooLongQuery =>
-      'Search queries cannot exceed 256 characters.';
+      'Search parameters are too long, please limit them to less than 256 characters total.';
 
   @override
   String get errorMessageDioException =>
