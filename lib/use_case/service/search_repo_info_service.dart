@@ -29,9 +29,6 @@ class SearchRepoService {
   /// - repo: リポジトリ情報（検索エラーや有効な index でない場合は nullが返る）
   /// - left: 未取得件数 （検索エラーや有効な index でない場合は 0が返る）
   ({int left, RepoModel? repo}) getRepoInfo(int index) {
-    // エラー情報をクリア
-    _errorInfo = null;
-
     if (_searchInfo == null) {
       return (repo: null, left: 0);
     }
