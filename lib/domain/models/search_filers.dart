@@ -3,6 +3,14 @@ class Query {
   Query(this.params);
   final List<QueryItem> params;
 
+  String toParamStr() {
+    final StringBuffer sb = StringBuffer();
+    for (final QueryItem item in params) {
+      sb.write(item.paramStr);
+    }
+    return sb.toString();
+  }
+
   String toQueryStr() {
     final StringBuffer sb = StringBuffer();
     for (final QueryItem item in params) {
