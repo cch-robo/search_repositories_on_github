@@ -20,9 +20,7 @@ class SearchedRepoRepository {
   static const int parPage = 20;
 
   /// クエリパラメータ最大長
-  ///
-  /// _運用上の最大長は、調査の結果 256文字より小さかった。_
-  static const int maxQueryParameterSize = 245;
+  static const int maxQueryParameterSize = 256;
 
   /// リポジトリ検索開始
   ///
