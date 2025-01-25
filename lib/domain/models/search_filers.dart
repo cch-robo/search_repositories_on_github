@@ -6,7 +6,10 @@ class Query {
   String toParamStr() {
     final StringBuffer sb = StringBuffer();
     for (final QueryItem item in params) {
-      sb.write(item.paramStr);
+      if (sb.isNotEmpty) {
+        sb.write(' ');
+      }
+      sb.write('"${item.paramStr}"');
     }
     return sb.toString();
   }
