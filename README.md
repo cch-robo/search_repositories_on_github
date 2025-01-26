@@ -221,12 +221,31 @@ Widget Teet からユースケースサービスによる検索実行が行え�
 
 _プロジェクト内のディレクトリ名は、上記の概念を反映しています。_  
 
-このプロジェクトは、マルチモジュール構成でないため依存関係の分離には制限があります。  
-このため依存関係の分離の手段として、レイヤごとの公開クラスを定義するファイルを設けました。  
+- ドメイン知識がプレゼン層に漏れ出さないようにする防波堤としての Use Case レイヤ。  
+今回のプロジェクトの要件は、GitHub search repositoriy API に端を発しています。  
+このためアプリは、将来の GitHub API 仕様の変更による影響を受けます。  
+　  
+将来のバグ要因を作り込まないようにするには、  
+GitHub API の都合は、Domain層で **ドメイン知識** として管理し、  
+Use Case層は、ドメイン知識の詳細が プレゼン層に漏出しないようにするため、  
+ユーザー入出力に必要なデータのみを Presentation層に渡し、詳細を隠蔽する設計が必要です。
 
+  - _ドメイン知識がプレゼン層に漏出しないよう、[デメテルの法則](https://ja.wikipedia.org/wiki/%E3%83%87%E3%83%A1%E3%83%86%E3%83%AB%E3%81%AE%E6%B3%95%E5%89%87) だけでなく、  
+  コンテキスト境界を越えさせないように Use Case層に Domain層をラップさせて Presentation層と連携させています。_  
+  【参考】[Flutter テスト講座 - テスト設計できるようになろう](https://drive.google.com/file/d/1OznsKYxa_VSkrAwuH2cqpf1ZHxBNsLEg/view?usp=drive_link)
+
+  - _今回のプロジェクトでは、エラー表示について DomainException 詳細を隠蔽することと、  
+  メッセージの国際化対応のため context が必要なことから、エラー表示の一部を Use Case層に移譲しています。_
+
+  - _クエリパラメータ・バリデーションは、 ドメイン知識詳細が Presentation層に漏れ出さないよう Domain層で行い、  
+  結果を　DomainException として Use Case 層に渡しています。_
+
+- またこのプロジェクトは、マルチモジュール構成でないため依存関係の分離には制限があります。  
+このため依存関係の分離の手段として、レイヤごとの公開クラスを定義するファイルを設けました。  
+　  
 以下のプルリクエストを御参照ください。  
 
-- インポート構成を改良 #48  
+  - インポート構成を改良 #48  
   [https://github.com/cch-robo/search_repositories_on_github/pull/48](https://github.com/cch-robo/search_repositories_on_github/pull/48)
 
 
