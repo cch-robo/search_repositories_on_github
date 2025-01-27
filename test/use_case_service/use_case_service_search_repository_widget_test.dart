@@ -99,7 +99,7 @@ void main() {
     final ({int left, RepoModel? repo}) res = useCaseService.getRepoInfo(6);
     expect(res.repo!.name, 'ChatApp'); //リポジトリ名
     expect(
-      res.repo!.ownerAvatarUrl,
+      res.repo!.owner!.avatarUrl,
       'https://avatars.githubusercontent.com/u/112800723?v=4',
     ); //オーナーアイコン URL
     // 【参考】同一シチュエーションでの Detail Page 画面表示については、
@@ -112,7 +112,7 @@ void main() {
 
     debugLog('\nStep.2 - リポジトリ名 ChatApp、index番号 6 のタップで表示される詳細');
     debugLog('リポジトリ名:${res.repo!.name}');
-    debugLog('オーナーアイコン URL:${res.repo!.ownerAvatarUrl}');
+    debugLog('オーナーアイコン URL:${res.repo!.owner!.avatarUrl}');
     debugLog('プロジェクト言語:${res.repo!.language}');
     debugLog('Star 数:${res.repo!.startsCount}');
     debugLog('Fork 数:${res.repo!.forksCount}');

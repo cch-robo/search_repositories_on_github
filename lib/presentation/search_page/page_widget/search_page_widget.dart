@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:search_repositories_on_github/application/publications.dart';
 import 'package:search_repositories_on_github/foundation/publications.dart';
 
+import '../../shared_state_on_pages/state/search_condition_state.dart';
 import '../../ui_components/app_icon.dart';
 import '../../ui_components/progress_panel.dart';
 import '../../ui_components/simple_button.dart';
@@ -163,8 +164,16 @@ class SearchPageState extends State<SearchPage> {
             ),
           ),
         ),
-        // 検索実行中のプログレス表示用
-        const ProgressPanel(type: ProgressPageType.search),
+        Consumer(
+          builder: (BuildContext context, WidgetRef ref, Widget? child) {
+            // プログレス表示を行わせるプロバイダの state を監視する。
+            final Condition condition =
+                ref.watch(searchPageViewModelProvider).condition;
+
+            // 検索実行中のプログレス表示用
+            return ProgressPanel(isProgress: Condition.searching == condition);
+          },
+        ),
       ],
     );
   }
