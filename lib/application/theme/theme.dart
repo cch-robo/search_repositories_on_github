@@ -32,7 +32,7 @@ TextTheme _createTextTheme(BuildContext context, ColorScheme colorScheme) {
   final ThemeData baseThemeData = Theme.of(context);
   final TextTheme baseTextTheme = baseThemeData.textTheme;
   /*
-  // FIXME 将来的に Google Fonts 対応する場合
+  // 将来的に Google Fonts 対応する場合
   TextTheme textTheme =
       GoogleFonts.notoSansJpTextTheme(baseThemeData.textTheme);
   */
