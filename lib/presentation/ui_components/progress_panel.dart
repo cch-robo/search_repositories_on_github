@@ -1,39 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../results_page/view_model/results_page_view_model.dart';
-import '../search_page/view_model/search_page_view_model.dart';
 
 /// 表示領域いっぱいにプログレス表示するだけのWidget
 ///
-/// SearchPage, ResultsPage, DetailPage 別で、
-/// 各画面用のプロバイダが提供するローディング中フラグを監視させ、
-/// ローディング中になれば画面いっぱいに広がりプログレス表示を行います。
-class ProgressPanel extends ConsumerWidget {
+/// ローディング中であれば画面いっぱいに広がりプログレス表示を行います。
+class ProgressPanel extends StatelessWidget {
   const ProgressPanel({
-    required ProgressPageType type,
+    required bool isProgress,
     super.key,
-  }) : _type = type;
+  }) : _isProgress = isProgress;
 
-  /// プログレス表示対象画面種別
-  final ProgressPageType _type;
+  /// プログレス表示フラグ
+  final bool _isProgress;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // プログレス表示を使うプロバイダの state を監視する。
-    ref.watch(searchPageViewModelProvider);
-    ref.watch(resultsPageViewModelProvider);
-
-    // bool isSearching フラグをチェック。
-    final bool isProgress = switch (_type) {
-      ProgressPageType.search =>
-        ref.read(searchPageViewModelProvider.notifier).isSearching,
-      ProgressPageType.results =>
-        ref.read(resultsPageViewModelProvider.notifier).isSearching,
-      ProgressPageType.detail => false,
-    };
-
-    return isProgress
+  Widget build(BuildContext context) {
+    return _isProgress
         ? Container(
             color: Colors.transparent,
             alignment: Alignment.center,

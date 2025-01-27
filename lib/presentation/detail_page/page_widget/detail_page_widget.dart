@@ -7,6 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:search_repositories_on_github/application/publications.dart';
 import 'package:search_repositories_on_github/domain/publications.dart';
+import 'package:search_repositories_on_github/foundation/debug/debug_logger.dart';
 
 import '../../ui_components/simple_text.dart';
 import '../view_model/detail_page_view_model.dart';
@@ -43,7 +44,7 @@ class DetailPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    debugPrint('debug - DetailPage - build');
+    debugLog('debug - DetailPage - build');
     useEffect(_initState, <Object?>[]);
 
     final DetailPageViewModel viewModel =
@@ -71,19 +72,24 @@ class DetailPage extends HookConsumerWidget {
                       const Divider(),
                       ListTile(
                         title: SimpleText(l10n(context).detailItemRepoName),
-                        subtitle: SimpleText(repo.name, size: FontSize.medium),
+                        subtitle: SimpleText(
+                          repo.name ?? '',
+                          size: FontSize.medium,
+                        ),
                       ),
                       const Divider(),
                       SimpleText(l10n(context).detailItemOwnerIcon),
                       FittedBox(
                         fit: BoxFit.contain,
-                        child: Image.network(repo.ownerAvatarUrl),
+                        child: Image.network(repo.owner?.avatarUrl ?? ''),
                       ),
                       const Divider(),
                       ListTile(
                         title: SimpleText(l10n(context).detailItemLanguage),
-                        subtitle:
-                            SimpleText(repo.language, size: FontSize.medium),
+                        subtitle: SimpleText(
+                          repo.language ?? '',
+                          size: FontSize.medium,
+                        ),
                       ),
                       const Divider(),
                       ListTile(

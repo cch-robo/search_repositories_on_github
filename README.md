@@ -22,21 +22,21 @@ GitHub 公開リポジトリをクエリを使って検索するアプリです�
   _Version 16.2 (16C5032a) intel版 を使いました_
 
 ### Flutter/Dart バージョン
-- Flutter stable 3.27.1 
-  - Channel stable, 3.27.1, on macOS 15.1.1 24B91  
+- Flutter stable 3.27.3  
+  - Channel stable, 3.27.3, on macOS 15.1.1 24B91  
     darwin-x64, locale ja-JP を使いました。
-- Dart stable 3.6.0
-  - Dart SDK version: 3.6.0 (stable)  
-  (Thu Dec 5 07:46:24 2024 -0800) on "macos_x64" を使いました。
+- Dart stable 3.6.1
+  - Dart SDK version: 3.6.1 (stable)  
+  (Tue Jan 7 09:50:00 2025 -0800) on "macos_x64" を使いました。
 
 ### fvm
 このプロジェクトでは、Flutter SDK バージョンを統一するため `fvm` を利用しています。  
 - fvm 3.2.1  
 　https://pub.dev/packages/fvm
 
-プロジェクトリポジトリには、SDK 3.27.1 を指定した `.fvmrc` が配置されているので、
+プロジェクトリポジトリには、SDK 3.27.3 を指定した `.fvmrc` が配置されているので、
 プロジェクトのルートディレクトリで、`fvm use`を実行すれば SDK がインストールされ、
-fvm コマンドで Flutter SDK 3.21.1 が利用できるようになります。
+fvm コマンドで Flutter SDK 3.27.3 が利用できるようになります。
 
 fvm をインストールされていない方は、下記のツールのインストールを実行しておいてください。  
 - fvm ツールのインストールコマンド（Linux/macOS）  
@@ -70,7 +70,7 @@ Android Studio の Flutter/Dart 関連の設定を行います。
   Android Studio は絶対パス指定を要求するので具体的な①パスは、以下の ①のようにになることと、  
   設定後はシンボリックリンクの実態先② に変わることに注意してください。  
   - ①/Users/rie/yumemi/code_check/search_repositories_on_github/.fvm/flutter_sdk/bin/cache/dart-sdk  
-  - ②/Users/rie/fvm/versions/3.27.1/bin/cache/dart-sdk  
+  - ②/Users/rie/fvm/versions/3.27.3/bin/cache/dart-sdk  
 
 3. Flutter SDK 設定  
   Settings > Languages & Frameworks > Flutter > SDK (current project only) >  
@@ -79,7 +79,7 @@ Android Studio の Flutter/Dart 関連の設定を行います。
   Android Studio は絶対パス指定を要求するので具体的な①パスは、以下の ①のようにになることと、  
   設定後はシンボリックリンクの実態先② に変わることに注意してください。  
   - ①/Users/rie/yumemi/code_check/search_repositories_on_github/.fvm/flutter_sdk  
-  - ②/Users/rie/fvm/versions/3.27.1  
+  - ②/Users/rie/fvm/versions/3.27.3  
 
 4. Dart フォーマット設定  
   フォーマット桁数を Flutter lint 想定に合わせるため 80桁に指定してください。  
@@ -276,6 +276,12 @@ Use Case層は、ドメイン知識の詳細が プレゼン層に漏出しな�
   [https://github.com/cch-robo/search_repositories_on_github/pull/86](https://github.com/cch-robo/search_repositories_on_github/pull/86) 
   [https://github.com/cch-robo/search_repositories_on_github/pull/88](https://github.com/cch-robo/search_repositories_on_github/pull/88) 
   [https://github.com/cch-robo/search_repositories_on_github/pull/93](https://github.com/cch-robo/search_repositories_on_github/pull/93)
+
+- GitHub search repository API から取得したリポジトリモデルの freezed 対応などのリファクタリングを行っています。
+  [https://github.com/cch-robo/search_repositories_on_github/pull/97](https://github.com/cch-robo/search_repositories_on_github/pull/97)
+
+- 要件外の対応や将来的なチャレンジなど、今回扱わなかったものについてはこちらを参照ください。
+[https://github.com/cch-robo/search_repositories_on_github/pull/101](https://github.com/cch-robo/search_repositories_on_github/pull/101)
 
 
 ## アプリ画像

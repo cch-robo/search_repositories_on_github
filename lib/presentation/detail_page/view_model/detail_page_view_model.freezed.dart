@@ -32,6 +32,8 @@ abstract class $DetailPageModelStateCopyWith<$Res> {
       _$DetailPageModelStateCopyWithImpl<$Res, DetailPageModelState>;
   @useResult
   $Res call({RepoModel? repo});
+
+  $RepoModelCopyWith<$Res>? get repo;
 }
 
 /// @nodoc
@@ -59,6 +61,20 @@ class _$DetailPageModelStateCopyWithImpl<$Res,
               as RepoModel?,
     ) as $Val);
   }
+
+  /// Create a copy of DetailPageModelState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RepoModelCopyWith<$Res>? get repo {
+    if (_value.repo == null) {
+      return null;
+    }
+
+    return $RepoModelCopyWith<$Res>(_value.repo!, (value) {
+      return _then(_value.copyWith(repo: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -70,6 +86,9 @@ abstract class _$$DetailPageModelStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({RepoModel? repo});
+
+  @override
+  $RepoModelCopyWith<$Res>? get repo;
 }
 
 /// @nodoc

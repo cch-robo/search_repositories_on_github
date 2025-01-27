@@ -9,6 +9,7 @@ import '../rest_api/rest_api_service.dart';
 /// GitHub search repository 検索情報リポジトリ
 class SearchedRepoRepository {
   SearchedRepoRepository(this._restApiService);
+
   final RestApiService _restApiService;
 
   /// リポジトリ検索モデル
@@ -32,20 +33,13 @@ class SearchedRepoRepository {
       // 検索情報を破棄
       _searchRepoInfo = null;
 
-      // クエリパラメータの qualifier を除くパラメータ部の最大長チェック
-      final String paramString = query.toParamStr();
-      debugLog('searchRepositories'
-          ' - paramString[${paramString.length}]=$paramString');
-
-      if (paramString.length > maxQueryParameterSize) {
-        throw DomainException('', type: DomainExceptionType.tooLongQuery);
-      }
+      _validateQueryParameter(query);
 
       final Response<Map<String, dynamic>> response = await _restApiService.get(
         path: 'https://api.github.com/search/repositories',
         header: <String, String>{
           'Accept': 'application/vnd.github+json',
-          // FIXME 時間があれば、トークン対応する。
+          // FIXME 要件外ですが、トークン対応について考えておくこと。
           // 'Authorization': 'Bearer $token',
           'X-GitHub-Api-Version': '2022-11-28',
         },
@@ -95,7 +89,7 @@ class SearchedRepoRepository {
         path: 'https://api.github.com/search/repositories',
         header: <String, String>{
           'Accept': 'application/vnd.github+json',
-          // FIXME 時間があれば、トークン対応する。
+          // FIXME 要件外ですが、トークン対応について考えておくこと。
           // 'Authorization': 'Bearer $token',
           'X-GitHub-Api-Version': '2022-11-28',
         },
@@ -175,6 +169,17 @@ class SearchedRepoRepository {
           '',
           type: DomainExceptionType.unknownException,
         );
+    }
+  }
+
+  void _validateQueryParameter(Query query) {
+    // クエリパラメータの qualifier を除くパラメータ部の最大長チェック
+    final String paramString = query.toParamStr();
+    debugLog('validateQueryParameter'
+        ' - paramString[${paramString.length}]=$paramString');
+
+    if (paramString.length > maxQueryParameterSize) {
+      throw DomainException('', type: DomainExceptionType.tooLongQuery);
     }
   }
 }
