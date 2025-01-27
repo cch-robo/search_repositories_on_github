@@ -45,7 +45,7 @@ class SearchedRepoRepository {
         path: 'https://api.github.com/search/repositories',
         header: <String, String>{
           'Accept': 'application/vnd.github+json',
-          // FIXME 時間があれば、トークン対応する。
+          // FIXME 要件外ですが、トークン対応について考えておくこと。
           // 'Authorization': 'Bearer $token',
           'X-GitHub-Api-Version': '2022-11-28',
         },
@@ -95,7 +95,7 @@ class SearchedRepoRepository {
         path: 'https://api.github.com/search/repositories',
         header: <String, String>{
           'Accept': 'application/vnd.github+json',
-          // FIXME 時間があれば、トークン対応する。
+          // FIXME 要件外ですが、トークン対応について考えておくこと。
           // 'Authorization': 'Bearer $token',
           'X-GitHub-Api-Version': '2022-11-28',
         },
