@@ -277,6 +277,12 @@ Use Case層は、ドメイン知識の詳細が プレゼン層に漏出しな�
   [https://github.com/cch-robo/search_repositories_on_github/pull/88](https://github.com/cch-robo/search_repositories_on_github/pull/88) 
   [https://github.com/cch-robo/search_repositories_on_github/pull/93](https://github.com/cch-robo/search_repositories_on_github/pull/93)
 
+- GitHub search repository API から取得したリポジトリモデルの freezed 対応などのリファクタリングを行っています。
+  [https://github.com/cch-robo/search_repositories_on_github/pull/97](https://github.com/cch-robo/search_repositories_on_github/pull/97)
+
+- 要件外の対応や将来的なチャレンジなど、今回扱わなかったものについてはこちらを参照ください。
+[https://github.com/cch-robo/search_repositories_on_github/pull/101](https://github.com/cch-robo/search_repositories_on_github/pull/101)
+
 
 ## アプリ画像
 ![Demo_SearchPage](docs/images/Demo_SearchPage.png)
