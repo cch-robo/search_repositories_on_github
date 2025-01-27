@@ -75,7 +75,7 @@ class ResultsPage extends HookConsumerWidget {
                           ? null
                           : RepositoryCard(
                               index: index,
-                              name: repo.name,
+                              name: repo.name ?? '',
                               onPressed: (BuildContext context, int index) {
                                 // カードがタップされたら、DetailPage で詳細を表示する。
                                 DetailPageRoute(index: index).go(context);
